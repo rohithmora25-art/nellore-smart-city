@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NELLORE SMART CITY AI — Intelligent Andhra Pradesh</title>
+  
+  <!-- External Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              850: '#0d1b2a',
+              900: '#070f1a',
+              950: '#040911',
+            },
+            accent: {
+              blue: '#0284c7',
+              cyan: '#06b6d4',
+              indigo: '#4f46e5',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans Telugu', 'system-ui', 'sans-serif'],
+            display: ['Space Grotesk', 'Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts: Inter, Space Grotesk & Noto Sans Telugu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Leaflet CSS & JS for Interactive Nellore Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <!-- Chart.js for Data Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-navy-950 dark:text-slate-100 transition-colors duration-300 antialiased selection:bg-sky-500 selection:text-white">
+
+  <!-- TOP GOVERNANCE TRANSPARENCY BANNER -->
+  <div class="bg-navy-900 text-slate-200 text-xs py-1.5 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-sky-500/20 text-sky-300 border border-sky-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span> PROTOTYPE SHOWCASE
+        </span>
+        <span class="hidden sm:inline text-slate-300">Digital Governance & Urban Intelligence Concept for Nellore Municipal Corporation & Govt. of Andhra Pradesh</span>
+      </div>
+      <div class="flex items-center gap-3 text-[11px]">
+        <span class="text-amber-300 font-medium flex items-center gap-1">
+          <i data-lucide="info" class="w-3.5 h-3.5"></i> Verified Public Info + Clearly Labeled Demo Analytics
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 glass-nav no-print">
+    <div class="max-w-[1440px] mx-auto px-3 sm:px-6">
+      <div class="flex items-center justify-between h-16 gap-2">
+        
+        <!-- Brand Identity -->
+        <a href="#home" class="flex items-center gap-2.5 shrink-0 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-navy-900 via-sky-700 to-cyan-500 flex items-center justify-center text-white shadow-lg shadow-sky-500/20 group-hover:scale-105 transition">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-display font-bold text-sm sm:text-base tracking-tight leading-none text-navy-900 dark:text-white">
+              NELLORE <span class="text-sky-600 dark:text-sky-400">SMART CITY AI</span>
+            </div>
+            <div class="text-[10px] font-medium text-slate-500 dark:text-slate-400 tracking-wider uppercase mt-0.5">
+              Intelligent Andhra Pradesh
+            </div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden xl:flex items-center gap-1 text-xs font-medium">
+          <a href="#home" data-i18n="nav_home" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-200/70 dark:hover:bg-slate-800 transition">Home</a>
+          <a href="#command-center" data-i18n="nav_dashboard" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-200/70 dark:hover:bg-slate-800 transition">City Dashboard</a>
+          <a href="#ai-analyst" data-i18n="nav_ai" class="px-2.5 py-1.5 rounded-lg text-sky-600 dark:text-sky-400 font-semibold bg-sky-500/10 hover:bg-sky-500/20 transition">AI City Analyst</a>
+          <a href="#transport" data-i18n="nav_transport" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-200/70 dark:hover:bg-slate-800 transition">Transport</a>
+          <a href="#healthcare" data-i18n="nav_health" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-200/70 dark:hover:bg-slate-800 transition">Healthcare</a>
+          <a href="#education" data-i18n="nav_edu" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-200/70 dark:hover:bg-slate-800 transition">Education</a>
+          <a href="#services" data-i18n="nav_services" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-200/70 dark:hover:bg-slate-800 transition">Civic Services</a>
+          <a href="#development" data-i18n="nav_dev" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-200/70 dark:hover:bg-slate-800 transition">Development</a>
+          <a href="#leadership" data-i18n="nav_about" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-200/70 dark:hover:bg-slate-800 transition">About & Leadership</a>
+        </nav>
+
+        <!-- Right Side Controls -->
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <!-- Global Search Trigger -->
+          <button onclick="openGlobalSearch()" class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/90 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-sky-500"></i>
+            <span class="hidden md:inline" data-i18n="search_btn">Search City...</span>
+          </button>
+
+          <!-- Emergency Button -->
+          <a href="#emergency" class="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold shadow-sm shadow-rose-500/30 transition">
+            <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline" data-i18n="nav_emergency">Emergency</span>
+          </a>
+
+          <!-- Language Selector (English / Telugu) -->
+          <button id="langToggle" onclick="toggleLanguage()" class="px-2.5 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-sky-500 transition">
+            తెలుగు
+          </button>
+
+          <!-- Notifications -->
+          <div class="relative">
+            <button onclick="toggleNotifications()" class="p-2 rounded-xl hover:bg-slate-200/70 dark:hover:bg-slate-800 relative transition" aria-label="Notifications">
+              <i data-lucide="bell" class="w-4 h-4"></i>
+              <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-sky-500 rounded-full"></span>
+            </button>
+            <div id="notifDropdown" class="hidden absolute right-0 mt-2 w-80 glass-card rounded-2xl shadow-2xl p-4 z-50 border border-slate-200 dark:border-slate-700">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-semibold text-xs uppercase tracking-wider text-slate-500">City Alerts & Updates</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400 font-semibold">DEMO FEED</span>
+              </div>
+              <div class="space-y-2.5 text-xs">
+                <div class="p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/70">
+                  <div class="font-semibold text-sky-600 dark:text-sky-400">Pennar River Barrage Advisory</div>
+                  <p class="text-slate-600 dark:text-slate-300 mt-0.5">Normal water flow monitored at Sangam & Nellore Barrage stations. (Demo Feed)</p>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/70">
+                  <div class="font-semibold text-emerald-600 dark:text-emerald-400">Smart LED Streetlight Drive</div>
+                  <p class="text-slate-600 dark:text-slate-300 mt-0.5">Ward 14 & Magunta Layout maintenance scheduled tonight 11 PM - 4 AM. (Demo)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Theme Toggle (Light / Dark) -->
+          <button onclick="toggleTheme()" class="p-2 rounded-xl hover:bg-slate-200/70 dark:hover:bg-slate-800 transition" aria-label="Toggle Theme">
+            <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+            <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
+          </button>
+
+          <!-- Citizen / Admin Portal Login -->
+          <button onclick="openAuthModal()" id="authBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-navy-900 dark:bg-sky-600 hover:bg-navy-800 dark:hover:bg-sky-500 text-white text-xs font-semibold transition">
+            <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline" id="authBtnLabel">Citizen Login</span>
+          </button>
+
+          <!-- Mobile Drawer Trigger -->
+          <button onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden xl:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-navy-900 px-4 py-3 space-y-1 text-sm">
+      <a href="#home" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Home</a>
+      <a href="#command-center" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">City Dashboard & Map</a>
+      <a href="#ai-analyst" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg text-sky-600 font-semibold">AI City Analyst</a>
+      <a href="#complaints" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Civic Complaint Portal</a>
+      <a href="#transport" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Smart Transport</a>
+      <a href="#healthcare" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Smart Healthcare</a>
+      <a href="#education" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Smart Education</a>
+      <a href="#services" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Public Services</a>
+      <a href="#development" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">AP & Nellore Development</a>
+      <a href="#leadership" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">CM & MLA Public Dashboard</a>
+      <a href="#wards" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Municipal Wards</a>
+      <a href="#environment" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Environment, Water & Waste</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main>
+
+    <!-- 1. HERO SECTION -->
+    <section id="home" class="relative overflow-hidden hero-grid pt-10 pb-16 lg:pt-16 lg:pb-24 border-b border-slate-200/80 dark:border-slate-800">
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-sky-500/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-1/2 -left-24 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Left Column: Hero Messaging & CTAs -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 border border-sky-200 dark:border-sky-800/70 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-xs font-semibold tracking-wide text-navy-900 dark:text-sky-300" data-i18n="hero_badge">
+                A Smarter Nellore. A Better Andhra Pradesh. • Powered by Intelligent Civic Innovation
+              </span>
+            </div>
+
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-navy-900 dark:text-white leading-[1.08]" data-i18n="hero_title">
+              THE FUTURE OF <span class="bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">NELLORE</span> STARTS HERE.
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed" data-i18n="hero_subtitle">
+              One intelligent platform connecting people, infrastructure, public services and city development through AI — engineered for Sri Potti Sriramulu Nellore District & Andhra Pradesh.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="#command-center" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-navy-900 dark:bg-sky-600 hover:bg-navy-800 dark:hover:bg-sky-500 text-white font-semibold text-sm shadow-lg shadow-sky-600/20 transition">
+                <i data-lucide="compass" class="w-4 h-4"></i>
+                <span data-i18n="cta_explore">Explore Smart Nellore</span>
+              </a>
+              <a href="#command-center" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl glass-card hover:border-sky-500 font-semibold text-sm transition">
+                <i data-lucide="layout-dashboard" class="w-4 h-4 text-sky-600"></i>
+                <span data-i18n="cta_dashboard">Open City Dashboard</span>
+              </a>
+              <a href="#complaints" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-800 dark:text-amber-300 border border-amber-500/30 font-semibold text-sm transition">
+                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                <span data-i18n="cta_report">Report a Civic Issue</span>
+              </a>
+              <a href="#ai-analyst" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:opacity-95 text-white font-semibold text-sm shadow-md transition">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span data-i18n="cta_ai">Ask AI City Analyst</span>
+              </a>
+            </div>
+
+            <!-- City Quick Facts (Authentic Verified Context) -->
+            <div class="pt-3 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-500 dark:text-slate-400">
+              <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-500"></i> 14.4426° N, 79.9865° E • Pennar River Basin</span>
+              <span class="flex items-center gap-1.5"><i data-lucide="building-2" class="w-3.5 h-3.5 text-sky-500"></i> Nellore Municipal Corporation (54 Wards)</span>
+              <span class="flex items-center gap-1.5"><i data-lucide="landmark" class="w-3.5 h-3.5 text-sky-500"></i> NH-16 & Howrah–Chennai Rail Corridor</span>
+            </div>
+          </div>
+
+          <!-- Right Column: Cinematic Architectural SVG Visualization of Smart Nellore -->
+          <div class="lg:col-span-5">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 dark:border-slate-700/80 bg-gradient-to-b from-navy-900 via-slate-900 to-sky-950 p-5 text-white">
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                  <span class="text-xs font-mono uppercase tracking-wider text-sky-300">NELLORE DIGITAL TWIN • PENNAR CORRIDOR</span>
+                </div>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-white/10 text-slate-300">CONCEPT VISUAL</span>
+              </div>
+
+              <!-- Futuristic Aerial Illustration of Nellore -->
+              <svg viewBox="0 0 500 310" class="w-full h-auto rounded-2xl bg-navy-950/90 border border-sky-500/20">
+                <defs>
+                  <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#071326"/>
+                    <stop offset="100%" stop-color="#0f294a"/>
+                  </linearGradient>
+                  <linearGradient id="riverGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#0284c7" stop-opacity="0.7"/>
+                    <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0369a1" stop-opacity="0.7"/>
+                  </linearGradient>
+                  <linearGradient id="buildingGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.85"/>
+                    <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0.4"/>
+                  </linearGradient>
+                </defs>
+                <rect width="500" height="310" fill="url(#skyGrad)"/>
+                <g stroke="#38bdf8" stroke-opacity="0.14" stroke-width="1">
+                  <line x1="0" y1="210" x2="500" y2="210"/>
+                  <line x1="0" y1="240" x2="500" y2="240"/>
+                  <line x1="0" y1="270" x2="500" y2="270"/>
+                  <line x1="80" y1="180" x2="20" y2="310"/>
+                  <line x1="180" y1="180" x2="150" y2="310"/>
+                  <line x1="280" y1="180" x2="290" y2="310"/>
+                  <line x1="380" y1="180" x2="430" y2="310"/>
+                </g>
+                <path d="M 0 185 Q 160 165, 270 185 T 500 175 L 500 202 Q 350 212, 240 198 T 0 205 Z" fill="url(#riverGrad)"/>
+                <g fill="#e2e8f0" opacity="0.85">
+                  <rect x="110" y="172" width="180" height="4" rx="2"/>
+                  <rect x="125" y="176" width="4" height="12"/>
+                  <rect x="155" y="176" width="4" height="12"/>
+                  <rect x="185" y="176" width="4" height="12"/>
+                  <rect x="215" y="176" width="4" height="12"/>
+                  <rect x="245" y="176" width="4" height="12"/>
+                </g>
+                <g fill="url(#buildingGrad)" stroke="#7dd3fc" stroke-width="0.6">
+                  <rect x="65" y="115" width="24" height="60" rx="2"/>
+                  <rect x="95" y="95" width="28" height="80" rx="2"/>
+                  <rect x="130" y="125" width="22" height="50" rx="2"/>
+                  <rect x="275" y="102" width="32" height="73" rx="2"/>
+                  <rect x="315" y="85" width="26" height="90" rx="2"/>
+                  <rect x="348" y="118" width="30" height="57" rx="2"/>
+                  <rect x="385" y="130" width="24" height="45" rx="2"/>
+                </g>
+                <ellipse cx="215" cy="245" rx="48" ry="14" fill="#10b981" fill-opacity="0.35" stroke="#34d399" stroke-width="1"/>
+                <ellipse cx="390" cy="255" rx="42" ry="12" fill="#10b981" fill-opacity="0.35" stroke="#34d399" stroke-width="1"/>
+                <circle cx="109" cy="88" r="4" fill="#38bdf8"/>
+                <circle cx="109" cy="88" r="10" fill="none" stroke="#38bdf8" stroke-opacity="0.5"/>
+                <text x="72" y="75" fill="#bae6fd" font-size="8" font-family="monospace">NLR JUNCTION</text>
+                <circle cx="328" cy="78" r="4" fill="#34d399"/>
+                <circle cx="328" cy="78" r="10" fill="none" stroke="#34d399" stroke-opacity="0.5"/>
+                <text x="295" y="65" fill="#a7f3d0" font-size="8" font-family="monospace">MAGUNTA / NH-16</text>
+                <circle cx="200" cy="166" r="3.5" fill="#fbbf24"/>
+                <text x="155" y="156" fill="#fde68a" font-size="8" font-family="monospace">PENNAR BARRAGE</text>
+              </svg>
+
+              <!-- Mini Live Weather & Telemetry Strip -->
+              <div class="grid grid-cols-3 gap-2.5 mt-3.5 text-xs">
+                <div class="bg-white/5 border border-white/10 rounded-xl p-2.5">
+                  <div class="text-slate-400 text-[10px]">NELLORE WEATHER (DEMO)</div>
+                  <div class="font-bold text-sm text-white mt-0.5 flex items-center gap-1">
+                    <i data-lucide="cloud-sun" class="w-4 h-4 text-amber-400"></i> 31°C • Clear
+                  </div>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-2.5">
+                  <div class="text-slate-400 text-[10px]">AIR QUALITY (DEMO)</div>
+                  <div class="font-bold text-sm text-emerald-400 mt-0.5">AQI 46 • Good</div>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-2.5">
+                  <div class="text-slate-400 text-[10px]">CIVIC UPTIME (DEMO)</div>
+                  <div class="font-bold text-sm text-sky-400 mt-0.5">98.4% Nodes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANIMATED CITY DATA CARDS -->
+        <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
+          <div class="glass-card rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center justify-between">
+              <span class="p-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400"><i data-lucide="users" class="w-4 h-4"></i></span>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">CENSUS 2011</span>
+            </div>
+            <div class="mt-3 font-display text-2xl font-bold text-navy-900 dark:text-white">5,58,548</div>
+            <div class="text-xs font-medium text-slate-600 dark:text-slate-300 mt-0.5" data-i18n="stat_pop">City Population (UA)</div>
+            <div class="text-[10px] text-slate-400 mt-1">Verified Official Census</div>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center justify-between">
+              <span class="p-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"><i data-lucide="map" class="w-4 h-4"></i></span>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">VERIFIED NMC</span>
+            </div>
+            <div class="mt-3 font-display text-2xl font-bold text-navy-900 dark:text-white">54</div>
+            <div class="text-xs font-medium text-slate-600 dark:text-slate-300 mt-0.5" data-i18n="stat_wards">Municipal Wards</div>
+            <div class="text-[10px] text-slate-400 mt-1">Nellore Municipal Corp.</div>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center justify-between">
+              <span class="p-2 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400"><i data-lucide="heart-pulse" class="w-4 h-4"></i></span>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-300">DEMO INDEX</span>
+            </div>
+            <div class="mt-3 font-display text-2xl font-bold text-navy-900 dark:text-white">48+</div>
+            <div class="text-xs font-medium text-slate-600 dark:text-slate-300 mt-0.5" data-i18n="stat_hospitals">Hospitals & PHCs</div>
+            <div class="text-[10px] text-slate-400 mt-1">GGH, Narayana, Apollo +</div>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center justify-between">
+              <span class="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"><i data-lucide="graduation-cap" class="w-4 h-4"></i></span>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-300">DEMO INDEX</span>
+            </div>
+            <div class="mt-3 font-display text-2xl font-bold text-navy-900 dark:text-white">210+</div>
+            <div class="text-xs font-medium text-slate-600 dark:text-slate-300 mt-0.5" data-i18n="stat_schools">Schools & Colleges</div>
+            <div class="text-[10px] text-slate-400 mt-1">VSU, Narayana, Geethanjali</div>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center justify-between">
+              <span class="p-2 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400"><i data-lucide="bus" class="w-4 h-4"></i></span>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-300">DEMO ROUTES</span>
+            </div>
+            <div class="mt-3 font-display text-2xl font-bold text-navy-900 dark:text-white">32</div>
+            <div class="text-xs font-medium text-slate-600 dark:text-slate-300 mt-0.5" data-i18n="stat_transport">APSRTC & City Routes</div>
+            <div class="text-[10px] text-slate-400 mt-1">Atmakur & RTC Bus Stands</div>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center justify-between">
+              <span class="p-2 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400"><i data-lucide="clipboard-list" class="w-4 h-4"></i></span>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-300">DEMO PORTAL</span>
+            </div>
+            <div id="heroActiveComplaints" class="mt-3 font-display text-2xl font-bold text-navy-900 dark:text-white">142</div>
+            <div class="text-xs font-medium text-slate-600 dark:text-slate-300 mt-0.5" data-i18n="stat_complaints">Active Civic Reports</div>
+            <div class="text-[10px] text-slate-400 mt-1">Interactive Demo Tracker</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SMART CITY COMMAND CENTER & INTERACTIVE LEAFLET MAP -->
+    <section id="command-center" class="py-16 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2">
+              <i data-lucide="radar" class="w-4 h-4"></i> Urban Control Room & Geospatial Intelligence
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white">
+              Nellore Smart City Command Center
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-2xl">
+              Real-time geospatial visualization of Nellore civic infrastructure using OpenStreetMap. Select layers below to inspect facilities, emergency hubs, and simulated civic telemetry.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">
+              Telemetry: Simulated Demo Mode
+            </span>
+          </div>
+        </div>
+
+        <!-- Telemetry Strip -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+          <div class="glass-card p-3.5 rounded-2xl">
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
+              <span>Traffic Flow (Demo)</span> <i data-lucide="activity" class="w-3.5 h-3.5 text-amber-500"></i>
+            </div>
+            <div class="font-bold text-base mt-1 text-navy-900 dark:text-white">Moderate</div>
+            <div class="text-[11px] text-amber-600 dark:text-amber-400">Trunk Rd & Madras Bus Stand</div>
+          </div>
+          <div class="glass-card p-3.5 rounded-2xl">
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
+              <span>Road Maint. (Demo)</span> <i data-lucide="construction" class="w-3.5 h-3.5 text-sky-500"></i>
+            </div>
+            <div class="font-bold text-base mt-1 text-navy-900 dark:text-white">14 Active Sites</div>
+            <div class="text-[11px] text-slate-500">Resurfacing & Storm Drains</div>
+          </div>
+          <div class="glass-card p-3.5 rounded-2xl">
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
+              <span>Water Supply (Demo)</span> <i data-lucide="droplets" class="w-3.5 h-3.5 text-cyan-500"></i>
+            </div>
+            <div class="font-bold text-base mt-1 text-emerald-600 dark:text-emerald-400">92% Normal</div>
+            <div class="text-[11px] text-slate-500">Pennar Headworks Supply</div>
+          </div>
+          <div class="glass-card p-3.5 rounded-2xl">
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
+              <span>Waste Pickup (Demo)</span> <i data-lucide="trash-2" class="w-3.5 h-3.5 text-emerald-500"></i>
+            </div>
+            <div class="font-bold text-base mt-1 text-navy-900 dark:text-white">89% Wards</div>
+            <div class="text-[11px] text-slate-500">Door-to-Door Collection</div>
+          </div>
+          <div class="glass-card p-3.5 rounded-2xl">
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
+              <span>Streetlights (Demo)</span> <i data-lucide="lightbulb" class="w-3.5 h-3.5 text-amber-400"></i>
+            </div>
+            <div class="font-bold text-base mt-1 text-navy-900 dark:text-white">96.2% Online</div>
+            <div class="text-[11px] text-slate-500">LED Smart Grid</div>
+          </div>
+          <div class="glass-card p-3.5 rounded-2xl">
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
+              <span>Public Safety</span> <i data-lucide="shield-check" class="w-3.5 h-3.5 text-indigo-500"></i>
+            </div>
+            <div class="font-bold text-base mt-1 text-emerald-600 dark:text-emerald-400">Dial 112 Active</div>
+            <div class="text-[11px] text-slate-500">Verified AP Emergency</div>
+          </div>
+        </div>
+
+        <!-- Map Filter Pills -->
+        <div class="flex flex-wrap gap-2 mb-4" id="mapLayerFilters">
+          <button onclick="filterMapLayer('all')" class="map-filter-btn active px-3 py-1.5 rounded-xl text-xs font-semibold bg-sky-600 text-white shadow-sm transition" data-layer="all">All Layers (14)</button>
+          <button onclick="filterMapLayer('hospital')" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-card hover:border-sky-500 transition" data-layer="hospital">🏥 Hospitals</button>
+          <button onclick="filterMapLayer('government')" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-card hover:border-sky-500 transition" data-layer="government">🏛️ Govt Offices</button>
+          <button onclick="filterMapLayer('emergency')" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-card hover:border-sky-500 transition" data-layer="emergency">🚓 Police & Fire</button>
+          <button onclick="filterMapLayer('education')" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-card hover:border-sky-500 transition" data-layer="education">🎓 Schools & Colleges</button>
+          <button onclick="filterMapLayer('transport')" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-card hover:border-sky-500 transition" data-layer="transport">🚉 Bus & Railway</button>
+          <button onclick="filterMapLayer('park')" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-card hover:border-sky-500 transition" data-layer="park">🌳 Parks & Water</button>
+          <button onclick="filterMapLayer('development')" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-card hover:border-sky-500 transition" data-layer="development">🏗️ Dev Projects (Demo)</button>
+        </div>
+
+        <!-- Map + Location Inspector Grid -->
+        <div class="grid lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-8 glass-card rounded-3xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 relative">
+            <div id="nelloreMap" class="w-full h-[460px]"></div>
+          </div>
+
+          <div class="lg:col-span-4 glass-card rounded-3xl p-6 flex flex-col justify-between shadow-lg">
+            <div id="mapInspectorContent">
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-sky-500/15 text-sky-600 dark:text-sky-400">Location Inspector</span>
+                <span class="text-xs text-slate-400">OpenStreetMap</span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-navy-900 dark:text-white" id="locName">Nellore Municipal Corporation</h3>
+              <p class="text-xs font-medium text-sky-600 dark:text-sky-400 mt-1" id="locCategory">Government & Civic Administration</p>
+              
+              <div class="mt-4 space-y-3 text-xs text-slate-600 dark:text-slate-300">
+                <div class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/70">
+                  <div class="font-semibold text-slate-800 dark:text-slate-200 mb-0.5">Address</div>
+                  <div id="locAddress">Grand Trunk Road, Near Gandhi Bomma Center, Nellore, AP 524001</div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/70">
+                  <div class="font-semibold text-slate-800 dark:text-slate-200 mb-0.5">Available Services</div>
+                  <div id="locServices">Property Tax, Birth/Death Certificates, Civic Grievances, Town Planning, Water & Sanitation</div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/70">
+                    <div class="font-semibold text-slate-800 dark:text-slate-200">Hours / Status</div>
+                    <div id="locHours" class="mt-0.5">10:00 AM – 5:00 PM (Mon–Sat)</div>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/70">
+                    <div class="font-semibold text-slate-800 dark:text-slate-200">Contact / Info</div>
+                    <div id="locContact" class="mt-0.5">Public Portal / Dial 1902</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center gap-2">
+              <a id="locNavLink" href="https://www.openstreetmap.org/?mlat=14.4426&mlon=79.9865#map=15/14.4426/79.9865" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition">
+                <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Open Navigation
+              </a>
+              <button onclick="askAIAboutCurrentLocation()" class="px-3.5 py-2.5 rounded-xl glass-card hover:border-sky-500 text-xs font-semibold transition">
+                Ask AI
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- City Statistics Charts Row -->
+        <div class="mt-8 grid md:grid-cols-3 gap-6">
+          <div class="glass-card rounded-3xl p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-semibold text-sm">Civic Complaints by Category</h4>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 font-semibold">DEMO DATA</span>
+            </div>
+            <div class="h-52">
+              <canvas id="categoryChart"></canvas>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-3xl p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-semibold text-sm">Monthly Resolution Trend</h4>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 font-semibold">DEMO DATA</span>
+            </div>
+            <div class="h-52">
+              <canvas id="trendChart"></canvas>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-3xl p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-semibold text-sm">Infrastructure Sector Index</h4>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 font-semibold">DEMO DATA</span>
+            </div>
+            <div class="h-52">
+              <canvas id="infraDoughnutChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. AI CITY ANALYST — MAIN FLAGSHIP FEATURE -->
+    <section id="ai-analyst" class="py-16 bg-gradient-to-b from-sky-50/70 via-white to-slate-50 dark:from-navy-900/70 dark:via-navy-950 dark:to-navy-950 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/15 text-sky-700 dark:text-sky-300 text-xs font-bold mb-2">
+              <i data-lucide="cpu" class="w-4 h-4"></i> FLAGSHIP URBAN INTELLIGENCE ENGINE
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white">
+              AI City Analyst — Nellore Urban Intelligence
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-3xl">
+              Specialized urban planning & civic decision-support assistant for Nellore and Andhra Pradesh. Generates structured policy briefs, infrastructure diagnostics, and actionable ward recommendations using verified public context and clearly labeled demo datasets.
+            </p>
+          </div>
+          <div class="text-xs px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+            <strong>Transparency Notice:</strong> Synthesizes demo civic datasets & verified public info. Not connected to classified government databases.
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-6">
+          <!-- Left Panel: Domain Prompts & Government Report Generator -->
+          <div class="lg:col-span-5 space-y-5">
+            <div class="glass-card rounded-3xl p-5">
+              <h3 class="font-display font-bold text-base mb-3 flex items-center gap-2">
+                <i data-lucide="layers" class="w-4 h-4 text-sky-500"></i> Instant Domain Diagnostics
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                <button onclick="runAIAnalysis('civic')" class="p-3 rounded-xl text-left bg-slate-100/80 dark:bg-slate-800/70 hover:bg-sky-500/15 hover:border-sky-500 border border-transparent transition">
+                  <div class="font-bold text-navy-900 dark:text-white">Civic Complaints</div>
+                  <div class="text-slate-500 dark:text-slate-400 mt-0.5">Potholes, drains & streetlights</div>
+                </button>
+                <button onclick="runAIAnalysis('development')" class="p-3 rounded-xl text-left bg-slate-100/80 dark:bg-slate-800/70 hover:bg-sky-500/15 hover:border-sky-500 border border-transparent transition">
+                  <div class="font-bold text-navy-900 dark:text-white">Urban Development</div>
+                  <div class="text-slate-500 dark:text-slate-400 mt-0.5">Pennar riverfront & NH-16 growth</div>
+                </button>
+                <button onclick="runAIAnalysis('healthcare')" class="p-3 rounded-xl text-left bg-slate-100/80 dark:bg-slate-800/70 hover:bg-sky-500/15 hover:border-sky-500 border border-transparent transition">
+                  <div class="font-bold text-navy-900 dark:text-white">Healthcare Coverage</div>
+                  <div class="text-slate-500 dark:text-slate-400 mt-0.5">GGH & peripheral PHC gaps</div>
+                </button>
+                <button onclick="runAIAnalysis('education')" class="p-3 rounded-xl text-left bg-slate-100/80 dark:bg-slate-800/70 hover:bg-sky-500/15 hover:border-sky-500 border border-transparent transition">
+                  <div class="font-bold text-navy-900 dark:text-white">Education & Skills</div>
+                  <div class="text-slate-500 dark:text-slate-400 mt-0.5">Digital labs & VSU synergy</div>
+                </button>
+                <button onclick="runAIAnalysis('transport')" class="p-3 rounded-xl text-left bg-slate-100/80 dark:bg-slate-800/70 hover:bg-sky-500/15 hover:border-sky-500 border border-transparent transition">
+                  <div class="font-bold text-navy-900 dark:text-white">Smart Mobility</div>
+                  <div class="text-slate-500 dark:text-slate-400 mt-0.5">Trunk Rd & Junction decongestion</div>
+                </button>
+                <button onclick="runAIAnalysis('water')" class="p-3 rounded-xl text-left bg-slate-100/80 dark:bg-slate-800/70 hover:bg-sky-500/15 hover:border-sky-500 border border-transparent transition">
+                  <div class="font-bold text-navy-900 dark:text-white">Water & Flood Resilience</div>
+                  <div class="text-slate-500 dark:text-slate-400 mt-0.5">Pennar drainage & monsoon prep</div>
+                </button>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-5 border-sky-500/30">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-display font-bold text-base flex items-center gap-2">
+                  <i data-lucide="file-text" class="w-4 h-4 text-indigo-500"></i> Government Policy Report Generator
+                </h3>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-600 dark:text-indigo-300">8-SECTION BRIEF</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mb-3">
+                Generate a structured executive report formatted for the Chief Minister's Office, Nellore MLA's Office, or Municipal Commissioner.
+              </p>
+              <div class="space-y-2.5">
+                <select id="reportTypeSelect" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs font-medium">
+                  <option value="Nellore Urban Development Report">1. Nellore Urban Development Report</option>
+                  <option value="Road Infrastructure & Junction Analysis">2. Road Infrastructure & Junction Analysis</option>
+                  <option value="Healthcare Infrastructure & PHC Report">3. Healthcare Infrastructure & PHC Report</option>
+                  <option value="Education & Digital Skill Development Report">4. Education & Digital Skill Development Report</option>
+                  <option value="Water Management & Storm Drainage Report">5. Water Management & Storm Drainage Report</option>
+                  <option value="Public Transport & Mobility Report">6. Public Transport & Mobility Report</option>
+                  <option value="Municipal Complaint & Ward Performance Summary">7. Municipal Complaint & Ward Performance Summary</option>
+                  <option value="Smart City Innovation & Citizen Satisfaction Summary">8. Smart City Innovation & Citizen Satisfaction Summary</option>
+                </select>
+                <div class="flex gap-2">
+                  <button onclick="generateStructuredReport()" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-navy-900 to-sky-700 hover:opacity-95 text-white text-xs font-semibold transition">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i> Generate Structured Report
+                  </button>
+                  <button onclick="window.print()" class="px-3.5 py-2.5 rounded-xl glass-card hover:border-sky-500 text-xs font-semibold flex items-center gap-1.5" title="Print / Save as PDF">
+                    <i data-lucide="printer" class="w-4 h-4"></i> PDF
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Panel: Interactive AI Analyst Console -->
+          <div class="lg:col-span-7 glass-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between shadow-xl min-h-[540px]">
+            <div>
+              <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-700">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-9 h-9 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold">AI</div>
+                  <div>
+                    <div class="font-bold text-sm text-navy-900 dark:text-white">Nellore Urban Intelligence Analyst</div>
+                    <div class="text-[11px] text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Ready • Bilingual Support (English / తెలుగు)
+                    </div>
+                  </div>
+                </div>
+                <button onclick="resetAnalystConsole()" class="text-xs text-slate-500 hover:text-sky-600">Clear Console</button>
+              </div>
+
+              <div id="aiAnalystOutput" class="space-y-4 max-h-[380px] overflow-y-auto pr-1 text-xs sm:text-sm leading-relaxed">
+                <div class="p-4 rounded-2xl bg-sky-500/10 border border-sky-500/20">
+                  <div class="font-bold text-navy-900 dark:text-sky-300 mb-1">Welcome to Nellore Smart City AI Analyst</div>
+                  <p class="text-slate-700 dark:text-slate-300 text-xs">
+                    Ask any urban planning, civic infrastructure, healthcare, transport, or ward governance question about <strong>Nellore</strong>, or select a report template on the left to generate an executive briefing.
+                  </p>
+                  <div class="mt-2 text-[11px] text-amber-700 dark:text-amber-300 font-medium">
+                    Note: Analysis combines verified Nellore civic geography with clearly labeled demo datasets.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form onsubmit="handleAnalystQuery(event)" class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 flex gap-2">
+              <input id="analystInput" type="text" placeholder="Ask e.g., 'Analyze waterlogging near Magunta Layout & suggest storm drain upgrades'..." class="flex-1 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm focus:outline-none focus:border-sky-500" required />
+              <button type="submit" class="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition shrink-0">
+                <span>Analyze</span> <i data-lucide="send" class="w-3.5 h-3.5"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. NELLORE CIVIC COMPLAINT PORTAL -->
+    <section id="complaints" class="py-16 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2">
+              <i data-lucide="megaphone" class="w-4 h-4"></i> Citizen Grievance & AI Triage Prototype
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white">
+              Nellore Civic Complaint Portal
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+              Submit civic issues with automatic AI categorization & priority scoring, or track existing demo reports using a reference ID.
+            </p>
+          </div>
+          <div class="text-xs px-3 py-1.5 rounded-xl bg-amber-500/15 text-amber-800 dark:text-amber-300 border border-amber-500/30 font-medium">
+            Prototype Simulation: Does not transmit to live NMC servers
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-6 glass-card rounded-3xl p-6 shadow-lg">
+            <h3 class="font-display font-bold text-lg mb-4 flex items-center gap-2">
+              <i data-lucide="file-plus-2" class="w-5 h-5 text-sky-600"></i> Report a Civic Issue
+            </h3>
+            <form id="complaintForm" onsubmit="submitCivicComplaint(event)" class="space-y-4 text-xs sm:text-sm">
+              <div class="grid sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block font-semibold mb-1">Issue Category *</label>
+                  <select id="compCategory" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700" required>
+                    <option value="Damaged Roads & Potholes">Damaged Roads & Potholes</option>
+                    <option value="Garbage Accumulation">Garbage Accumulation</option>
+                    <option value="Drainage & Waterlogging">Drainage & Waterlogging</option>
+                    <option value="Water Supply Issue">Water Supply Issue</option>
+                    <option value="Streetlight Failure">Streetlight Failure</option>
+                    <option value="Public Toilet Maintenance">Public Toilet Maintenance</option>
+                    <option value="Illegal Dumping">Illegal Dumping</option>
+                    <option value="Traffic & Signal Concern">Traffic & Signal Concern</option>
+                    <option value="Public Infrastructure Damage">Public Infrastructure Damage</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block font-semibold mb-1">Municipal Ward *</label>
+                  <select id="compWard" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700" required>
+                    <option value="Ward 12 - Magunta Layout">Ward 12 - Magunta Layout</option>
+                    <option value="Ward 18 - Dargamitta">Ward 18 - Dargamitta</option>
+                    <option value="Ward 24 - Stonehousepet">Ward 24 - Stonehousepet</option>
+                    <option value="Ward 08 - Vedayapalem">Ward 08 - Vedayapalem</option>
+                    <option value="Ward 31 - Balaji Nagar">Ward 31 - Balaji Nagar</option>
+                    <option value="Ward 42 - Muthukur Road">Ward 42 - Muthukur Road</option>
+                    <option value="Ward 05 - Kovur / Pennar Bridge">Ward 05 - Kovur / Pennar Bridge</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-1">Complaint Title *</label>
+                <input id="compTitle" type="text" placeholder="e.g., Deep pothole near VRC Center signal" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700" required />
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-1">Specific Landmark / Location *</label>
+                <input id="compLocation" type="text" placeholder="e.g., Opposite VRC Grounds, Grand Trunk Road, Nellore" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700" required />
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-1">Detailed Description *</label>
+                <textarea id="compDesc" rows="3" placeholder="Describe severity, safety impact, and duration..." class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700" required></textarea>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block font-semibold mb-1">Attach Photo (Optional)</label>
+                  <input type="file" accept="image/*" class="w-full text-xs file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-sky-500/15 file:text-sky-700 dark:file:text-sky-300" />
+                </div>
+                <div>
+                  <label class="block font-semibold mb-1">Contact Mobile / Email (Optional)</label>
+                  <input id="compContact" type="text" placeholder="For demo status updates" class="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700" />
+                </div>
+              </div>
+
+              <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:opacity-95 text-white font-semibold shadow-lg transition flex items-center justify-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Submit Civic Report & Run AI Summary
+              </button>
+            </form>
+
+            <div id="complaintConfirmation" class="hidden mt-5 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-xs space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-emerald-700 dark:text-emerald-300 text-sm">✓ Demo Report Logged Successfully</span>
+                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-700 dark:text-amber-300 font-bold">SIMULATED ID</span>
+              </div>
+              <div>Reference ID: <strong id="confId" class="font-mono text-sm text-navy-900 dark:text-white">NLR-2026-8841</strong></div>
+              <div id="confAISummary" class="p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300"></div>
+              <div class="text-[11px] text-slate-500">Timeline: Submitted → AI Categorized → Pending Municipal Demo Review (Est. 48–72 hrs demo SLA).</div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 space-y-6">
+            <div class="grid grid-cols-3 gap-3">
+              <div class="glass-card p-4 rounded-2xl text-center">
+                <div class="text-xs text-slate-500">Total Logged (Demo)</div>
+                <div id="statTotalComp" class="font-display text-2xl font-bold text-navy-900 dark:text-white mt-1">1,284</div>
+              </div>
+              <div class="glass-card p-4 rounded-2xl text-center">
+                <div class="text-xs text-slate-500">In Progress (Demo)</div>
+                <div id="statPendingComp" class="font-display text-2xl font-bold text-amber-600 mt-1">142</div>
+              </div>
+              <div class="glass-card p-4 rounded-2xl text-center">
+                <div class="text-xs text-slate-500">Resolved (Demo)</div>
+                <div class="font-display text-2xl font-bold text-emerald-600 mt-1">1,142</div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-5">
+              <h4 class="font-bold text-sm mb-2.5 flex items-center gap-2">
+                <i data-lucide="search-check" class="w-4 h-4 text-sky-500"></i> Track Complaint by Reference ID
+              </h4>
+              <div class="flex gap-2">
+                <input id="trackIdInput" type="text" placeholder="Try NLR-2026-1042 or your new ID" class="flex-1 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs" />
+                <button onclick="trackComplaintById()" class="px-4 py-2 rounded-xl bg-navy-900 dark:bg-sky-600 text-white text-xs font-semibold">Track</button>
+              </div>
+              <div id="trackResult" class="mt-3 text-xs"></div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-5">
+              <div class="flex items-center justify-between mb-3">
+                <h4 class="font-bold text-sm">Recent Citizen Reports (Demo Feed)</h4>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800">AI Summarized</span>
+              </div>
+              <div id="recentComplaintsList" class="space-y-2.5 max-h-64 overflow-y-auto pr-1 text-xs"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SMART TRANSPORTATION & ROUTE PLANNER -->
+    <section id="transport" class="py-16 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 mb-2">
+              <i data-lucide="navigation-2" class="w-4 h-4"></i> Mobility & Corridor Intelligence
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white">
+              Smart Transportation & Mobility Hub
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+              APSRTC bus connectivity, Nellore Railway Station (NLR) corridor insights, EV charging points, and AI-assisted route planning.
+            </p>
+          </div>
+          <span class="text-xs px-3 py-1 rounded-full bg-amber-500/15 text-amber-700 dark:text-amber-300 font-semibold">
+            Route Estimates: Simulated Demo Model
+          </span>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-5 glass-card rounded-3xl p-6">
+            <h3 class="font-display font-bold text-lg mb-4 flex items-center gap-2">
+              <i data-lucide="route" class="w-5 h-5 text-sky-600"></i> Nellore Multimodal Route Planner
+            </h3>
+            <div class="space-y-3 text-xs sm:text-sm">
+              <div>
+                <label class="block font-semibold mb-1">Starting Point</label>
+                <select id="routeStart" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700">
+                  <option value="Nellore Railway Station (NLR)">Nellore Railway Station (NLR)</option>
+                  <option value="APSRTC Main Bus Stand (Madras Bus Stand)">APSRTC Main Bus Stand</option>
+                  <option value="Atmakur Bus Stand">Atmakur Bus Stand</option>
+                  <option value="Magunta Layout">Magunta Layout</option>
+                  <option value="Vedayapalem">Vedayapalem</option>
+                  <option value="Vikrama Simhapuri University (Kakutur)">Vikrama Simhapuri University (Kakutur)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-semibold mb-1">Destination</label>
+                <select id="routeEnd" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700">
+                  <option value="Government General Hospital (GGH)">Government General Hospital (GGH)</option>
+                  <option value="Narayana Medical College & Hospital">Narayana Medical College & Hospital</option>
+                  <option value="Nellore Railway Station (NLR)">Nellore Railway Station (NLR)</option>
+                  <option value="Mypadu Beach Road">Mypadu Beach Road</option>
+                  <option value="Nellore Tank Bund / Swarnala Cheruvu">Nellore Tank Bund / Swarnala Cheruvu</option>
+                  <option value="Krishnapatnam Port Corridor">Krishnapatnam Port Corridor</option>
+                </select>
+              </div>
+              <button onclick="calculateDemoRoute()" class="w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold transition">
+                Plan Route & Check Traffic AI
+              </button>
+            </div>
+
+            <div id="routeOutput" class="mt-4 p-4 rounded-2xl bg-slate-100/80 dark:bg-slate-800/80 text-xs space-y-2">
+              <div class="font-bold text-navy-900 dark:text-white">Select origin & destination to view estimated corridor options.</div>
+              <p class="text-slate-500">Includes APSRTC city bus frequencies, auto-rickshaw feeder stands, and NH-16 bypass suggestions.</p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+            <div class="glass-card rounded-2xl p-5">
+              <div class="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold text-sm mb-2">
+                <i data-lucide="train" class="w-4 h-4"></i> Nellore Railway Station (Code: NLR)
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Major NSG-2 category junction on the Vijayawada–Chennai Grand Trunk line. Equipped with escalators, foot-over-bridges, and feeder auto/bus bays on East & West terminals.
+              </p>
+              <div class="mt-3 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">Verified Railway Hub • Enquiry: 139</div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-sm mb-2">
+                <i data-lucide="bus" class="w-4 h-4"></i> APSRTC Bus Terminals
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Connected via Main RTC Bus Complex (GNT Road) and Atmakur Bus Stand serving Tirupati, Chennai, Vijayawada, Ongole, and rural Nellore mandals.
+              </p>
+              <div class="mt-3 text-[11px] font-semibold text-sky-600 dark:text-sky-400">City & District Bus Network</div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5">
+              <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-sm mb-2">
+                <i data-lucide="zap" class="w-4 h-4"></i> EV Charging & Parking (Demo)
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Demo smart parking zones mapped near VRC Center, Magunta Layout, and NH-16 service plazas with fast DC EV chargers.
+              </p>
+              <div class="mt-3 text-[11px] font-semibold text-amber-600">Demo Infrastructure Layer</div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 border-amber-500/30">
+              <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-sm mb-2">
+                <i data-lucide="cpu" class="w-4 h-4"></i> Smart Traffic AI Advisory (Demo)
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Peak bottlenecks identified at Madras Bus Stand, VRC Junction, and Pogathota. AI recommends adaptive signal timing & Mini-Bypass utilization.
+              </p>
+              <div class="mt-3 text-[11px] font-semibold text-amber-600">Simulated Traffic Analytics</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SMART HEALTHCARE & 7. SMART EDUCATION -->
+    <section id="healthcare" class="py-16 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
+        <div>
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 mb-2">
+                <i data-lucide="heart-pulse" class="w-4 h-4"></i> Public Health & Emergency Care Directory
+              </div>
+              <h2 class="font-display text-3xl font-bold text-navy-900 dark:text-white">Smart Healthcare — Nellore</h2>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Verified major hospitals, Urban Primary Health Centers (UPHCs), blood bank helplines, and general health navigation.
+              </p>
+            </div>
+            <span class="text-xs text-slate-500">Note: Live bed counts are not fabricated; call 108 for medical emergencies.</span>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-5">
+            <div class="glass-card rounded-2xl p-5 border-t-4 border-t-rose-500">
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">GOVERNMENT TERTIARY HOSPITAL</span>
+              <h3 class="font-bold text-base mt-2">Government General Hospital (GGH) & ACSR Medical College</h3>
+              <p class="text-xs text-slate-500 mt-1">Dargamitta, Nellore • 24/7 Casualty, Trauma, General Medicine, Pediatrics, Dialysis</p>
+              <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between text-xs">
+                <span class="font-semibold text-rose-600">Ambulance: 108</span>
+                <a href="https://www.openstreetmap.org/?mlat=14.4328&mlon=79.9822#map=16/14.4328/79.9822" target="_blank" class="text-sky-600 font-semibold hover:underline">Map Directions →</a>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 border-t-4 border-t-sky-500">
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-500/15 text-sky-700 dark:text-sky-300">TEACHING & MULTI-SPECIALTY</span>
+              <h3 class="font-bold text-base mt-2">Narayana Medical College & General Hospital</h3>
+              <p class="text-xs text-slate-500 mt-1">Chinthareddypalem, Nellore • 24/7 Emergency, Cardiology, Neurology, Oncology</p>
+              <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between text-xs">
+                <span class="font-semibold text-slate-600 dark:text-slate-300">24/7 Emergency Wing</span>
+                <a href="https://www.openstreetmap.org/?mlat=14.4255&mlon=79.9560#map=16/14.4255/79.9560" target="_blank" class="text-sky-600 font-semibold hover:underline">Map Directions →</a>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 border-t-4 border-t-indigo-500">
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-700 dark:text-indigo-300">SPECIALTY & URBAN PHCs</span>
+              <h3 class="font-bold text-base mt-2">Apollo Specialty Hospitals & NMC Urban PHCs</h3>
+              <p class="text-xs text-slate-500 mt-1">Pinakini Nagar & 14 Municipal UPHC Clinics • Maternal Care, Immunization, Diagnostics</p>
+              <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between text-xs">
+                <span class="font-semibold text-slate-600 dark:text-slate-300">Health Helpline: 104</span>
+                <a href="#ai-analyst" onclick="runAIAnalysis('healthcare')" class="text-sky-600 font-semibold hover:underline">AI Coverage Analysis →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="education">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+                <i data-lucide="graduation-cap" class="w-4 h-4"></i> Academic & Skill Ecosystem
+              </div>
+              <h2 class="font-display text-3xl font-bold text-navy-900 dark:text-white">Smart Education — Nellore</h2>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Higher education universities, engineering & medical institutions, municipal schools, and digital literacy initiatives.
+              </p>
+            </div>
+            <button onclick="runAIAnalysis('education')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold self-start md:self-auto">
+              Run AI Education Gap Analysis
+            </button>
+          </div>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="glass-card rounded-2xl p-4">
+              <div class="text-xs font-bold text-emerald-600">STATE UNIVERSITY</div>
+              <h4 class="font-bold text-sm mt-1">Vikrama Simhapuri University (VSU)</h4>
+              <p class="text-xs text-slate-500 mt-1">Kakutur, Nellore • Postgraduate Sciences, Commerce, Marine Biology & Research.</p>
+            </div>
+            <div class="glass-card rounded-2xl p-4">
+              <div class="text-xs font-bold text-sky-600">ENGINEERING & TECH</div>
+              <h4 class="font-bold text-sm mt-1">Narayana & Geethanjali Engineering Colleges</h4>
+              <p class="text-xs text-slate-500 mt-1">B.Tech, AI/ML, ECE, Mechanical & Industry Skill Incubation Centers.</p>
+            </div>
+            <div class="glass-card rounded-2xl p-4">
+              <div class="text-xs font-bold text-indigo-600">MEDICAL EDUCATION</div>
+              <h4 class="font-bold text-sm mt-1">ACSR Govt. Medical College</h4>
+              <p class="text-xs text-slate-500 mt-1">Dargamitta • MBBS, Nursing, Paramedical & Clinical Research Training.</p>
+            </div>
+            <div class="glass-card rounded-2xl p-4">
+              <div class="text-xs font-bold text-amber-600">DIGITAL & CIVIC LEARNING</div>
+              <h4 class="font-bold text-sm mt-1">NMC Smart Classrooms & District Library</h4>
+              <p class="text-xs text-slate-500 mt-1">Interactive digital boards in municipal high schools & competitive exam reading halls.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SMART PUBLIC SERVICES PORTAL -->
+    <section id="services" class="py-16 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="max-w-3xl mb-8">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2">
+            <i data-lucide="landmark" class="w-4 h-4"></i> Unified Citizen Facilitation Directory
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white">
+            Smart Public Services & AI Service Finder
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+            Ask "What service do I need?" in plain English or Telugu to discover required documents, procedures, and official Andhra Pradesh / CDMA portals.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-4 mb-6 flex flex-col sm:flex-row gap-3">
+          <div class="flex-1 relative">
+            <i data-lucide="sparkles" class="w-4 h-4 text-sky-500 absolute left-3.5 top-3"></i>
+            <input id="serviceSearchInput" oninput="filterPublicServices()" type="text" placeholder="Ask: 'How do I pay house tax?' or 'Documents for birth certificate / water tap'..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" />
+          </div>
+          <button onclick="filterPublicServices()" class="px-5 py-2.5 rounded-xl bg-navy-900 dark:bg-sky-600 text-white text-xs font-semibold">Find Service</button>
+        </div>
+
+        <div id="servicesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- 9. EMERGENCY INFORMATION HUB -->
+    <section id="emergency" class="py-16 bg-rose-50/60 dark:bg-rose-950/20 border-b border-rose-200/70 dark:border-rose-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-600 text-white text-xs font-bold mb-2">
+              <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> VERIFIED EMERGENCY HELPLINES — ANDHRA PRADESH
+            </div>
+            <h2 class="font-display text-3xl font-bold text-navy-900 dark:text-white">
+              Nellore Emergency & Disaster Response Hub
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
+              Official toll-free emergency numbers for Andhra Pradesh & Nellore District. (Informational directory — dial directly from your phone).
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
+          <div class="glass-card rounded-2xl p-4 border-l-4 border-l-rose-600">
+            <div class="text-xs font-bold text-slate-500">ALL-IN-ONE EMERGENCY</div>
+            <div class="font-display text-3xl font-bold text-rose-600 mt-1">112</div>
+            <div class="text-xs font-semibold mt-1">Police / Fire / Rescue</div>
+          </div>
+          <div class="glass-card rounded-2xl p-4 border-l-4 border-l-sky-600">
+            <div class="text-xs font-bold text-slate-500">POLICE CONTROL</div>
+            <div class="font-display text-3xl font-bold text-sky-600 mt-1">100</div>
+            <div class="text-xs font-semibold mt-1">Nellore District Police</div>
+          </div>
+          <div class="glass-card rounded-2xl p-4 border-l-4 border-l-emerald-600">
+            <div class="text-xs font-bold text-slate-500">AMBULANCE (108)</div>
+            <div class="font-display text-3xl font-bold text-emerald-600 mt-1">108</div>
+            <div class="text-xs font-semibold mt-1">24/7 Medical Emergency</div>
+          </div>
+          <div class="glass-card rounded-2xl p-4 border-l-4 border-l-amber-600">
+            <div class="text-xs font-bold text-slate-500">FIRE & RESCUE</div>
+            <div class="font-display text-3xl font-bold text-amber-600 mt-1">101</div>
+            <div class="text-xs font-semibold mt-1">Nellore Fire Stations</div>
+          </div>
+          <div class="glass-card rounded-2xl p-4 border-l-4 border-l-indigo-600">
+            <div class="text-xs font-bold text-slate-500">CYCLONE / FLOOD</div>
+            <div class="font-display text-3xl font-bold text-indigo-600 mt-1">1077</div>
+            <div class="text-xs font-semibold mt-1">District Collectorate Control</div>
+          </div>
+          <div class="glass-card rounded-2xl p-4 border-l-4 border-l-purple-600">
+            <div class="text-xs font-bold text-slate-500">WOMEN & CHILD</div>
+            <div class="font-display text-3xl font-bold text-purple-600 mt-1">181 / 1098</div>
+            <div class="text-xs font-semibold mt-1">Disha / Childline Support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. ANDHRA PRADESH — NELLORE DEVELOPMENT TRACKER -->
+    <section id="development" class="py-16 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+              <i data-lucide="building" class="w-4 h-4"></i> Public Infrastructure & Growth Monitoring
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white">
+              ANDHRA PRADESH — NELLORE DEVELOPMENT TRACKER
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+              Transparent public monitoring of key infrastructure, water, industrial, and smart city initiatives across Nellore.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="filterProjects('all', this)" class="proj-filter px-3 py-1.5 rounded-xl text-xs font-semibold bg-navy-900 dark:bg-sky-600 text-white">All Projects</button>
+            <button onclick="filterProjects('In Progress', this)" class="proj-filter px-3 py-1.5 rounded-xl text-xs font-semibold glass-card">In Progress</button>
+            <button onclick="filterProjects('Planning', this)" class="proj-filter px-3 py-1.5 rounded-xl text-xs font-semibold glass-card">Planning / Proposed</button>
+            <button onclick="filterProjects('Completed', this)" class="proj-filter px-3 py-1.5 rounded-xl text-xs font-semibold glass-card">Completed</button>
+          </div>
+        </div>
+
+        <div id="projectsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+      </div>
+    </section>
+
+    <!-- 11. PUBLIC LEADERSHIP & DEVELOPMENT INSIGHTS -->
+    <section id="leadership" class="py-16 bg-slate-100/70 dark:bg-navy-900/50 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2">
+              <i data-lucide="award" class="w-4 h-4"></i> Governance Presentation Module
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white">
+              PUBLIC LEADERSHIP & DEVELOPMENT INSIGHTS
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl">
+              Neutral, factual public-information views designed to demonstrate how AI urban analytics can support the Government of Andhra Pradesh, Hon'ble Chief Minister's Office, and Nellore Constituency representatives.
+            </p>
+          </div>
+          <button onclick="generateLeadershipBrief()" class="px-4 py-2.5 rounded-xl bg-navy-900 dark:bg-sky-600 hover:opacity-95 text-white text-xs font-semibold flex items-center gap-2 self-start md:self-auto">
+            <i data-lucide="file-spreadsheet" class="w-4 h-4"></i> Generate Leadership Briefing (PDF Ready)
+          </button>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-6">
+          <div class="glass-card rounded-3xl p-6 shadow-md">
+            <div class="flex items-start justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-navy-900 to-sky-700 text-white flex items-center justify-center font-display font-bold text-lg">
+                  AP
+                </div>
+                <div>
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">State Leadership Overview</span>
+                  <h3 class="font-display font-bold text-lg text-navy-900 dark:text-white">Hon'ble Chief Minister of Andhra Pradesh</h3>
+                  <p class="text-xs text-slate-500">Sri N. Chandrababu Naidu • Government of Andhra Pradesh</p>
+                </div>
+              </div>
+              <a href="https://www.ap.gov.in" target="_blank" rel="noopener noreferrer" class="text-xs px-3 py-1.5 rounded-xl bg-sky-500/10 text-sky-700 dark:text-sky-300 font-semibold hover:bg-sky-500/20 shrink-0">
+                AP Portal ↗
+              </a>
+            </div>
+
+            <div class="mt-4 space-y-3 text-xs">
+              <div class="font-semibold text-slate-700 dark:text-slate-200">Strategic State–District Alignment (Public Policy Focus):</div>
+              <ul class="space-y-2 text-slate-600 dark:text-slate-300">
+                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-500 shrink-0 mt-0.5"></i> <span><strong>Swarna Andhra @ 2047 Vision:</strong> Real-time governance, AI-driven citizen service delivery, and coastal port-led industrialization (Krishnapatnam & Ramayapatnam).</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-500 shrink-0 mt-0.5"></i> <span><strong>Irrigation & Pennar Basin:</strong> Modernizing Nellore & Sangam barrages for agricultural water security and flood mitigation.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-500 shrink-0 mt-0.5"></i> <span><strong>Infrastructure Priorities (Demo Analytics):</strong> Urban road resurfacing, smart LED grids, and UPHC healthcare strengthening.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-3xl p-6 shadow-md">
+            <div class="flex items-start justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-700 to-cyan-600 text-white flex items-center justify-center font-display font-bold text-lg">
+                  NLR
+                </div>
+                <div>
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Constituency Public Dashboard</span>
+                  <h3 class="font-display font-bold text-lg text-navy-900 dark:text-white">Nellore City & Rural Assembly Constituencies</h3>
+                  <p class="text-xs text-slate-500">Nellore Municipal Corporation & District Administration</p>
+                </div>
+              </div>
+              <a href="https://spsnellore.ap.gov.in" target="_blank" rel="noopener noreferrer" class="text-xs px-3 py-1.5 rounded-xl bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 font-semibold hover:bg-indigo-500/20 shrink-0">
+                District Portal ↗
+              </a>
+            </div>
+
+            <div class="mt-4 space-y-3 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-slate-700 dark:text-slate-200">Constituency Civic Snapshot (Demo Telemetry):</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 font-semibold">DEMO METRICS</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2.5">
+                <div class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/70">
+                  <div class="text-slate-500">Top Citizen Priority</div>
+                  <div class="font-bold text-navy-900 dark:text-white mt-0.5">Stormwater Drains & Roads</div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/70">
+                  <div class="text-slate-500">Ward Coverage</div>
+                  <div class="font-bold text-navy-900 dark:text-white mt-0.5">54 Municipal Wards</div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/70">
+                  <div class="text-slate-500">Healthcare Focus</div>
+                  <div class="font-bold text-navy-900 dark:text-white mt-0.5">GGH & 14 UPHCs</div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/70">
+                  <div class="text-slate-500">Citizen Feedback</div>
+                  <div class="font-bold text-emerald-600 mt-0.5">Digital Grievance Ready</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. SMART WARD DASHBOARD & COMPARISON -->
+    <section id="wards" class="py-16 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2">
+              <i data-lucide="grid" class="w-4 h-4"></i> Granular Neighborhood Governance
+            </div>
+            <h2 class="font-display text-3xl font-bold text-navy-900 dark:text-white">
+              Nellore Smart Ward Intelligence & Comparison
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+              Transparent ward-level infrastructure & civic issue monitoring. (Demonstrative sample wards from Nellore's 54 municipal divisions).
+            </p>
+          </div>
+          <span class="text-xs px-3 py-1 rounded-full bg-amber-500/15 text-amber-700 dark:text-amber-300 font-semibold">
+            Ward Metrics: Clearly Labeled Demo Data
+          </span>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6">
+          <div class="grid sm:grid-cols-2 gap-4 mb-6">
+            <div>
+              <label class="block text-xs font-bold mb-1">Compare Ward A</label>
+              <select id="wardSelectA" onchange="renderWardComparison()" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs font-semibold">
+                <option value="0">Ward 12 — Magunta Layout</option>
+                <option value="1">Ward 18 — Dargamitta</option>
+                <option value="2">Ward 24 — Stonehousepet</option>
+                <option value="3">Ward 08 — Vedayapalem</option>
+                <option value="4">Ward 31 — Balaji Nagar</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold mb-1">Compare Ward B</label>
+              <select id="wardSelectB" onchange="renderWardComparison()" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs font-semibold">
+                <option value="1">Ward 18 — Dargamitta</option>
+                <option value="0">Ward 12 — Magunta Layout</option>
+                <option value="2">Ward 24 — Stonehousepet</option>
+                <option value="3">Ward 08 — Vedayapalem</option>
+                <option value="4">Ward 31 — Balaji Nagar</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="wardComparisonOutput" class="grid md:grid-cols-2 gap-6"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14, 15, 16. SMART ENVIRONMENT, WATER & WASTE MANAGEMENT -->
+    <section id="environment" class="py-16 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="mb-8">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+            <i data-lucide="leaf" class="w-4 h-4"></i> Sustainability & Resource Resilience
+          </div>
+          <h2 class="font-display text-3xl font-bold text-navy-900 dark:text-white">
+            Smart Environment, Water & Waste Management
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+            Integrated environmental indicators, Pennar water conservation, and source-segregated circular waste management (Simulated Demo Telemetry).
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="glass-card rounded-3xl p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="p-2.5 rounded-xl bg-emerald-500/15 text-emerald-600"><i data-lucide="wind" class="w-5 h-5"></i></span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/15 text-amber-600">DEMO SENSOR</span>
+            </div>
+            <h3 class="font-display font-bold text-lg">Air Quality & Green Cover</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              Simulated Ambient AQI: <strong>46 (Good)</strong>. Key green lungs include Swarnala Cheruvu Tank Bund, Children's Park, and Pennar riverfront plantation drives.
+            </p>
+            <div class="mt-4 p-3 rounded-xl bg-emerald-500/10 text-xs text-emerald-800 dark:text-emerald-300">
+              AI Tip: Expand Miyawaki urban micro-forests along NH-16 service corridors.
+            </div>
+          </div>
+
+          <div class="glass-card rounded-3xl p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="p-2.5 rounded-xl bg-cyan-500/15 text-cyan-600"><i data-lucide="droplets" class="w-5 h-5"></i></span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/15 text-amber-600">DEMO WATER GRID</span>
+            </div>
+            <h3 class="font-display font-bold text-lg">Smart Water Management</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              Primary water source: <strong>Pennar River & Sangam/Nellore Barrage</strong>. Focus on leak detection, rainwater harvesting mandates, and desilting stormwater canals before NE Monsoon.
+            </p>
+            <div class="mt-4 p-3 rounded-xl bg-cyan-500/10 text-xs text-cyan-800 dark:text-cyan-300">
+              Monsoon Readiness: 18 low-lying drainage hotspots flagged for pre-rain clearing.
+            </div>
+          </div>
+
+          <div class="glass-card rounded-3xl p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="p-2.5 rounded-xl bg-amber-500/15 text-amber-600"><i data-lucide="recycle" class="w-5 h-5"></i></span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/15 text-amber-600">DEMO SANITATION</span>
+            </div>
+            <h3 class="font-display font-bold text-lg">Circular Waste & Segregation</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              5-Stream Citizen Guide: <strong>Wet Organic</strong> (Green), <strong>Dry Plastic/Paper</strong> (Blue), <strong>E-Waste</strong>, <strong>Construction Debris</strong>, and <strong>Domestic Hazardous</strong>.
+            </p>
+            <div class="mt-4 p-3 rounded-xl bg-amber-500/10 text-xs text-amber-800 dark:text-amber-300">
+              Allurupadu / Donthali processing hubs & ward-level dry resource centers.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17. SMART CITY NEWS, ANNOUNCEMENTS & VERIFIED OFFICIAL LINKS -->
+    <section id="news" class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2">
+              <i data-lucide="newspaper" class="w-4 h-4"></i> Civic Bulletins & Official Portals
+            </div>
+            <h2 class="font-display text-3xl font-bold text-navy-900 dark:text-white">
+              Nellore Civic Bulletins & Government Links
+            </h2>
+          </div>
+          <span class="text-xs px-3 py-1 rounded-full bg-amber-500/15 text-amber-700 dark:text-amber-300 font-semibold">
+            Sample Bulletins Labeled DEMO
+          </span>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5 mb-10">
+          <div class="glass-card rounded-2xl p-5">
+            <div class="flex items-center justify-between text-[10px] font-bold mb-2">
+              <span class="text-sky-600">INFRASTRUCTURE • DEMO</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-600">DEMO NOTICE</span>
+            </div>
+            <h4 class="font-bold text-sm">Smart LED & Underground Cabling Pilot in Central Nellore</h4>
+            <p class="text-xs text-slate-500 mt-1.5">Sample announcement demonstrating how citizens receive ward-level utility schedules and outage alerts.</p>
+          </div>
+          <div class="glass-card rounded-2xl p-5">
+            <div class="flex items-center justify-between text-[10px] font-bold mb-2">
+              <span class="text-emerald-600">PUBLIC HEALTH • DEMO</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-600">DEMO NOTICE</span>
+            </div>
+            <h4 class="font-bold text-sm">Seasonal Vector-Borne Disease Prevention Drive Across 54 Wards</h4>
+            <p class="text-xs text-slate-500 mt-1.5">Anti-larval fogging and clean water awareness schedule across municipal schools and residential colonies.</p>
+          </div>
+          <div class="glass-card rounded-2xl p-5">
+            <div class="flex items-center justify-between text-[10px] font-bold mb-2">
+              <span class="text-indigo-600">DIGITAL GOVERNANCE</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700">VERIFIED PORTALS</span>
+            </div>
+            <h4 class="font-bold text-sm">Official Andhra Pradesh & Nellore District Digital Portals</h4>
+            <div class="mt-2 space-y-1 text-xs">
+              <div>• <a href="https://spsnellore.ap.gov.in" target="_blank" class="text-sky-600 hover:underline">SPSR Nellore District Official Website ↗</a></div>
+              <div>• <a href="https://cdma.ap.gov.in" target="_blank" class="text-sky-600 hover:underline">CDMA Andhra Pradesh Municipal Services ↗</a></div>
+              <div>• <a href="https://www.ap.gov.in" target="_blank" class="text-sky-600 hover:underline">Government of Andhra Pradesh Portal ↗</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-950 text-slate-300 border-t border-slate-800 py-12 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-4 gap-8 pb-8 border-b border-slate-800 text-xs">
+        <div class="md:col-span-2 space-y-3">
+          <div class="font-display font-bold text-lg text-white">
+            NELLORE <span class="text-sky-400">SMART CITY AI</span>
+          </div>
+          <p class="text-slate-400 max-w-md leading-relaxed">
+            "A Smarter Nellore. A Better Andhra Pradesh." — A next-generation digital governance, urban planning, and citizen intelligence platform prototype designed for Sri Potti Sriramulu Nellore District.
+          </p>
+          <div class="p-3 rounded-xl bg-white/5 border border-white/10 text-[11px] text-amber-300">
+            <strong>Disclaimer:</strong> This application is an interactive smart-city prototype. Verified public references (Census 2011 population, 54 NMC wards, AP emergency numbers 112/100/108/101/1077, official AP/Nellore URLs) are paired with clearly labeled demonstration data for civic analytics and AI report generation.
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider mb-3">Platform Modules</h4>
+          <ul class="space-y-2 text-slate-400">
+            <li><a href="#command-center" class="hover:text-sky-400">Urban Command Center & Map</a></li>
+            <li><a href="#ai-analyst" class="hover:text-sky-400">AI City Analyst & Reports</a></li>
+            <li><a href="#complaints" class="hover:text-sky-400">Civic Complaint Portal</a></li>
+            <li><a href="#development" class="hover:text-sky-400">AP–Nellore Development Tracker</a></li>
+            <li><a href="#leadership" class="hover:text-sky-400">CM & MLA Public Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider mb-3">Verified Emergency</h4>
+          <ul class="space-y-2 text-slate-400">
+            <li>National Emergency: <strong class="text-white">112</strong></li>
+            <li>AP Police: <strong class="text-white">100</strong></li>
+            <li>Ambulance: <strong class="text-white">108</strong></li>
+            <li>Fire & Rescue: <strong class="text-white">101</strong></li>
+            <li>District Disaster Control: <strong class="text-white">1077</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+        <div>© 2026 NELLORE SMART CITY AI — Intelligent Andhra Pradesh Concept Platform.</div>
+        <div>Built for Citizens, Planners & Public Leadership of Nellore.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING AI CHATBOT -->
+  <div class="fixed bottom-5 right-5 z-50 no-print">
+    <div id="chatbotWindow" class="hidden mb-3 w-[340px] sm:w-[390px] glass-card rounded-3xl shadow-2xl border border-sky-500/30 overflow-hidden flex flex-col">
+      <div class="bg-gradient-to-r from-navy-900 via-sky-800 to-cyan-700 p-4 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center">
+            <i data-lucide="bot" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="font-display font-bold text-xs sm:text-sm">NELLORE AI ASSISTANT</div>
+            <div class="text-[10px] text-sky-200">Demo Urban Assistant • EN / తెలుగు</div>
+          </div>
+        </div>
+        <button onclick="toggleChatbot()" class="p-1 rounded-lg hover:bg-white/15"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+
+      <div id="chatMessages" class="p-4 h-72 overflow-y-auto space-y-3 text-xs bg-white/60 dark:bg-navy-950/70">
+        <div class="p-3 rounded-2xl rounded-tl-none bg-sky-500/15 text-slate-800 dark:text-slate-200">
+          Namaskaram! I am <strong>Nellore AI</strong> (Demo Civic Intelligence Assistant). Ask me about hospitals, bus/railway stations, civic complaints, water management, or Nellore development projects!
+        </div>
+        <div class="flex flex-wrap gap-1.5">
+          <button onclick="sendQuickChat('Find hospitals near Nellore railway station')" class="px-2.5 py-1 rounded-full bg-slate-200/80 dark:bg-slate-800 hover:bg-sky-500/20 text-[11px]">Hospitals near NLR Station</button>
+          <button onclick="sendQuickChat('Where can I report a pothole?')" class="px-2.5 py-1 rounded-full bg-slate-200/80 dark:bg-slate-800 hover:bg-sky-500/20 text-[11px]">Report a pothole</button>
+          <button onclick="sendQuickChat('What are major civic issues in Nellore?')" class="px-2.5 py-1 rounded-full bg-slate-200/80 dark:bg-slate-800 hover:bg-sky-500/20 text-[11px]">Major civic issues</button>
+        </div>
+      </div>
+
+      <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-navy-900 flex gap-2">
+        <input id="chatInput" type="text" placeholder="Ask Nellore AI..." class="flex-1 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs focus:outline-none" required />
+        <button type="submit" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+        </button>
+      </form>
+    </div>
+
+    <button onclick="toggleChatbot()" class="ml-auto flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-gradient-to-r from-navy-900 via-sky-600 to-cyan-500 text-white font-semibold text-xs sm:text-sm shadow-2xl shadow-sky-500/40 hover:scale-105 transition animate-float">
+      <i data-lucide="sparkles" class="w-4 h-4"></i>
+      <span>Nellore AI</span>
+    </button>
+  </div>
+
+  <!-- CITIZEN LOGIN & ADMIN MODAL -->
+  <div id="authModal" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 no-print">
+    <div class="glass-card max-w-lg w-full rounded-3xl p-6 shadow-2xl border border-slate-200 dark:border-slate-700">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-700">
+        <h3 class="font-display font-bold text-lg">Citizen & Administrator Portal (Demo Mode)</h3>
+        <button onclick="closeAuthModal()" class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+
+      <div id="authLoginView" class="mt-4 space-y-4 text-xs">
+        <div class="p-3 rounded-xl bg-amber-500/15 text-amber-800 dark:text-amber-300">
+          <strong>Demo Authentication Notice:</strong> Select a role below to preview the Citizen Dashboard or Authorized Department/City Demo Console.
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Full Name</label>
+          <input id="loginName" type="text" value="K. Ramesh Kumar" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700" />
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Select Demo Role</label>
+          <select id="loginRole" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700">
+            <option value="Citizen">Citizen (My Complaints, Saved Locations, Bookmarks)</option>
+            <option value="Department Administrator (Demo)">Department Administrator (Demo Triage View)</option>
+            <option value="City Administrator (Demo)">City Administrator (Demo Oversight Console)</option>
+          </select>
+        </div>
+        <button onclick="performDemoLogin()" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold">
+          Enter Portal Workspace
+        </button>
+      </div>
+
+      <div id="authDashboardView" class="hidden mt-4 space-y-4 text-xs">
+        <div class="p-3.5 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-between">
+          <div>
+            <div class="font-bold text-sm" id="loggedUserDisplay">K. Ramesh Kumar</div>
+            <div class="text-sky-600 dark:text-sky-400 font-semibold" id="loggedRoleDisplay">Citizen</div>
+          </div>
+          <button onclick="performDemoLogout()" class="px-3 py-1.5 rounded-xl bg-rose-600 text-white font-semibold">Sign Out</button>
+        </div>
+
+        <div id="adminControlsBox" class="hidden space-y-2.5 p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80">
+          <div class="font-bold text-amber-600">Demo Administrator Controls (Simulated)</div>
+          <p class="text-slate-500">Update demo complaint statuses in the local prototype feed:</p>
+          <div class="flex gap-2">
+            <select id="adminCompSelect" class="flex-1 px-2.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700"></select>
+            <select id="adminStatusSelect" class="px-2.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700">
+              <option value="Acknowledged">Acknowledged</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+            </select>
+            <button onclick="adminUpdateComplaintStatus()" class="px-3 py-2 rounded-xl bg-emerald-600 text-white font-semibold">Update</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="font-bold mb-1.5">Saved Nellore Locations & Bookmarks</div>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800">🏥 GGH Nellore (Dargamitta)</div>
+            <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800">🚉 Nellore Railway Station</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL SEARCH MODAL -->
+  <div id="searchModal" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-start justify-center pt-20 p-4 no-print">
+    <div class="glass-card max-w-2xl w-full rounded-3xl p-5 shadow-2xl border border-slate-200 dark:border-slate-700">
+      <div class="flex items-center gap-3 pb-3 border-b border-slate-200 dark:border-slate-700">
+        <i data-lucide="search" class="w-5 h-5 text-sky-500"></i>
+        <input id="globalSearchInput" oninput="runGlobalSearch()" type="text" placeholder="Search hospitals, schools, wards, public services, transport, projects in Nellore..." class="flex-1 bg-transparent text-sm focus:outline-none" autofocus />
+        <button onclick="closeGlobalSearch()" class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <div id="globalSearchResults" class="mt-3 max-h-80 overflow-y-auto space-y-2 text-xs">
+        <div class="text-slate-500 p-3 text-center">Start typing to search across Nellore locations, hospitals, colleges, wards, and civic services...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION JAVASCRIPT -->
+  <script>
+    const nelloreLocations = [
+      { id: 1, name: "Nellore Municipal Corporation (NMC)", layer: "government", cat: "Municipal Administration", lat: 14.4426, lng: 79.9865, address: "Grand Trunk Road, Near Gandhi Bomma Center, Nellore", services: "Property Tax, Birth/Death Certificates, Civic Grievances, Town Planning", hours: "10:00 AM – 5:00 PM", contact: "CDMA Portal / 1902" },
+      { id: 2, name: "SPSR Nellore District Collectorate", layer: "government", cat: "District Administration", lat: 14.4368, lng: 79.9882, address: "Achari Street / Collectorate Complex, Nellore", services: "Revenue, Disaster Control (1077), Public Grievance Cell", hours: "10:00 AM – 5:00 PM", contact: "1077 (Disaster Control)" },
+      { id: 3, name: "Government General Hospital (GGH) & ACSR Medical College", layer: "hospital", cat: "Government Tertiary Hospital", lat: 14.4328, lng: 79.9822, address: "Dargamitta, Nellore", services: "24/7 Casualty, Trauma Care, General Medicine, Surgery, Dialysis", hours: "24/7 Emergency", contact: "Ambulance: 108" },
+      { id: 4, name: "Narayana Medical College & General Hospital", layer: "hospital", cat: "Multi-Specialty Teaching Hospital", lat: 14.4255, lng: 79.9560, address: "Chinthareddypalem, Nellore", services: "24/7 Emergency, Cardiology, Neurology, Oncology, Diagnostics", hours: "24/7 Open", contact: "Emergency Care" },
+      { id: 5, name: "Apollo Specialty Hospitals Nellore", layer: "hospital", cat: "Multi-Specialty Hospital", lat: 14.4192, lng: 79.9745, address: "Pinakini Nagar, Muthukur Road, Nellore", services: "Critical Care, Orthopedics, Cardiology, Emergency", hours: "24/7 Open", contact: "Hospital Desk" },
+      { id: 6, name: "Nellore Railway Station (NLR)", layer: "transport", cat: "Major Railway Junction (NSG-2)", lat: 14.4519, lng: 79.9868, address: "Station Road, East & West Terminals, Nellore", services: "Vijayawada–Chennai Main Line, Escalators, Feeder Auto/Bus Bays", hours: "24/7 Operations", contact: "Railway Enquiry: 139" },
+      { id: 7, name: "APSRTC Main Bus Stand (Madras Bus Stand)", layer: "transport", cat: "Intercity & City Bus Terminal", lat: 14.4461, lng: 79.9854, address: "Grand Trunk Road, Nellore", services: "Express & Ultra Deluxe Buses to Tirupati, Chennai, Vijayawada, City Routes", hours: "24/7 Operations", contact: "APSRTC Terminal" },
+      { id: 8, name: "District Police Office & One Town Police Station", layer: "emergency", cat: "Law Enforcement & Public Safety", lat: 14.4445, lng: 79.9830, address: "Trunk Road / Police Parade Grounds, Nellore", services: "Emergency Policing, Dial 112 Response, Citizen Safety", hours: "24/7 Emergency", contact: "Dial 112 / 100" },
+      { id: 9, name: "Nellore Fire & Rescue Station", layer: "emergency", cat: "Fire & Disaster Response", lat: 14.4402, lng: 79.9912, address: "Near Madras Bus Stand / Trunk Road, Nellore", services: "Firefighting, Flood & Rescue Operations", hours: "24/7 Emergency", contact: "Dial 101 / 112" },
+      { id: 10, name: "Vikrama Simhapuri University (VSU)", layer: "education", cat: "State Public University", lat: 14.3742, lng: 79.9325, address: "Kakutur, NH-16 South, Nellore", services: "Postgraduate Sciences, Marine Biology, Commerce, Research", hours: "9:30 AM – 5:00 PM", contact: "University Admin" },
+      { id: 11, name: "VR High School & Municipal Education Hub", layer: "education", cat: "Historic Educational Institution", lat: 14.4478, lng: 79.9810, address: "VRC Center, Nellore", services: "Secondary Education, Sports Grounds, Public Events", hours: "9:00 AM – 4:30 PM", contact: "School Office" },
+      { id: 12, name: "Swarnala Cheruvu & Nellore Tank Bund", layer: "park", cat: "Urban Lakefront & Green Space", lat: 14.4285, lng: 79.9918, address: "Tank Bund Road, Nellore", services: "Walking Track, Lakefront Recreation, Urban Ecology", hours: "5:00 AM – 9:00 PM", contact: "NMC Parks Wing" },
+      { id: 13, name: "Pennar River Barrage (Nellore Anicut)", layer: "park", cat: "Water Infrastructure & Riverfront", lat: 14.4628, lng: 79.9815, address: "Pennar River, Kovur–Nellore Link", services: "Irrigation Regulation, Water Supply Headworks", hours: "Monitored Facility", contact: "Irrigation Dept." },
+      { id: 14, name: "Magunta Layout Smart Corridor (Demo Project)", layer: "development", cat: "Urban Infrastructure Upgrade (DEMO)", lat: 14.4342, lng: 79.9728, address: "Magunta Layout, Nellore", services: "Stormwater Drain Widening, LED Smart Streetlights, Road Resurfacing (Demo)", hours: "In Progress (Demo)", contact: "NMC Engineering (Demo)" }
+    ];
+
+    const publicServicesData = [
+      { title: "Property / House Tax Assessment & Payment", desc: "Pay annual/half-yearly municipal property tax or check assessment status.", docs: "Assessment Number, Sale Deed / Link Document, Aadhaar", process: "Verify assessment ID on CDMA AP portal or NMC Citizen Service Center and pay online.", link: "https://cdma.ap.gov.in" },
+      { title: "Birth & Death Certificate Registration", desc: "Apply for digital birth or death certificates registered within Nellore Municipal limits.", docs: "Hospital Discharge/Medical Report, Parents' ID Proof, Address Proof", process: "Submit via Ward Sachivalayam (Village/Ward Secretariat) or MeeSeva / CDMA portal.", link: "https://cdma.ap.gov.in" },
+      { title: "New Municipal Water Tap Connection", desc: "Apply for domestic or commercial drinking water tap connection from NMC.", docs: "Property Tax Receipt, Ownership Proof, Aadhaar Card", process: "Apply through Ward Secretariat / CDMA Water Tap module; field engineer inspection follows.", link: "https://cdma.ap.gov.in" },
+      { title: "Building Plan & Layout Approval (APDPMS)", desc: "Online building permission and occupancy certificate workflow.", docs: "Registered Sale Deed, Site Plan, Structural Stability & Licensed Engineer Drawing", process: "Submit online via AP Development Permission Management System (APDPMS).", link: "https://apdpms.ap.gov.in" },
+      { title: "Trade License Renewal & New Issue", desc: "Municipal trade license for shops, clinics, restaurants, and commercial establishments.", docs: "Rental Agreement / Property Tax Receipt, ID Proof, Fire NOC (if applicable)", process: "Apply via CDMA Trade License portal or nearest Ward Sachivalayam.", link: "https://cdma.ap.gov.in" },
+      { title: "Public Grievance & Civic Redressal", desc: "Report sanitation, streetlight, water, or road issues to municipal authorities.", docs: "Location Details, Issue Description, Optional Photo", process: "Use Nellore Smart City AI Civic Portal (Demo) or official AP PGRS / Spandana portal.", link: "https://spsnellore.ap.gov.in" }
+    ];
+
+    const developmentProjects = [
+      { name: "Pennar Riverfront & Barrage Modernization", category: "Water & Flood Resilience", location: "Nellore–Kovur Pennar Stretch", dept: "Water Resources Dept. (Demo)", stage: "In Progress", desc: "Strengthening flood embankments, automating barrage telemetry, and enhancing urban water storage resilience.", update: "Embankment reinforcement & telemetry integration underway (Demo Status)." },
+      { name: "Central Nellore Stormwater Drainage Network", category: "Municipal Infrastructure", location: "Magunta Layout, Dargamitta & VRC", dept: "Nellore Municipal Corp. (Demo)", stage: "In Progress", desc: "Construction of high-capacity RCC box drains to prevent monsoon waterlogging in low-lying commercial junctions.", update: "Phase-2 arterial drain trenching active (Demo Status)." },
+      { name: "Smart LED Streetlight & Command Grid", category: "Digital Governance", location: "All 54 Municipal Wards", dept: "NMC Electrical Wing (Demo)", stage: "Completed", desc: "Replacement of legacy sodium lamps with energy-efficient smart LED fixtures with automated fault alerts.", update: "Core feeder corridors commissioned (Demo Status)." },
+      { name: "NH-16 Service Road & Junction Decongestion", category: "Road & Transport", location: "Vedayapalem – Mini Bypass", dept: "R&B / NHAI Corridor (Demo)", stage: "Planning", desc: "Geometric redesign of bottlenecks, pedestrian crosswalks, and dedicated APSRTC bus bays.", update: "Detailed traffic survey & junction blueprint review (Demo Status)." },
+      { name: "Urban Primary Health Center (UPHC) Digital Upgrade", category: "Healthcare", location: "14 Peripheral Wards", dept: "Medical & Health Dept. (Demo)", stage: "In Progress", desc: "Upgrading diagnostic labs, telemedicine links to GGH Nellore, and maternal care facilities.", update: "Diagnostic equipment installation in 9 centers (Demo Status)." },
+      { name: "Swarnala Cheruvu Eco-Park & Cycling Track", category: "Environment & Tourism", location: "Tank Bund Road, Nellore", dept: "NMC Parks & Tourism (Demo)", stage: "Planning", desc: "Solar-lit lakeside promenade, native tree plantation, and water quality aeration fountains.", update: "Concept masterplan & ecological assessment (Demo Status)." }
+    ];
+
+    const wardData = [
+      { name: "Ward 12 — Magunta Layout", area: "Central-West Residential & Commercial", complaints: 34, resolved: 29, roads: "84% Good (Drainage work active)", water: "Regular Alternate-Day Supply", streetlights: "98% Functional", facilities: "2 Parks, 1 UPHC, 3 Schools", project: "RCC Stormwater Drain Phase-2 (Demo)" },
+      { name: "Ward 18 — Dargamitta", area: "Institutional & Medical Hub", complaints: 28, resolved: 25, roads: "88% Good", water: "Regular Supply", streetlights: "97% Functional", facilities: "GGH Nellore, ACSR Medical College", project: "Hospital Access Road Widening (Demo)" },
+      { name: "Ward 24 — Stonehousepet", area: "High-Density Core Commercial", complaints: 41, resolved: 33, roads: "76% Fair (Congestion at peak hrs)", water: "Monitored Pressure", streetlights: "95% Functional", facilities: "Market Complex, Municipal School", project: "Underground Utility Ducting (Demo)" },
+      { name: "Ward 08 — Vedayapalem", area: "Southern NH-16 Gateway", complaints: 39, resolved: 31, roads: "79% Fair", water: "Tanker + Piped Augmentation", streetlights: "94% Functional", facilities: "Railway Overbridge, Clinics", project: "NH-16 Service Road Lighting (Demo)" },
+      { name: "Ward 31 — Balaji Nagar", area: "Residential Growth Corridor", complaints: 22, resolved: 20, roads: "90% Good", water: "Regular Supply", streetlights: "99% Functional", facilities: "Community Hall, Green Park", project: "Door-to-Door Segregated Waste Pilot (Demo)" }
+    ];
+
+    let complaintsList = [
+      { id: "NLR-2026-1042", category: "Drainage & Waterlogging", ward: "Ward 12 - Magunta Layout", title: "Silt accumulation in roadside storm drain", location: "Near Magunta Layout 3rd Cross", status: "In Progress", aiSummary: "AI Triage: High pre-monsoon drainage priority; assigned to NMC Sanitation & Engineering demo crew." },
+      { id: "NLR-2026-1039", category: "Streetlight Failure", ward: "Ward 08 - Vedayapalem", title: "4 LED streetlights non-functional near junction", location: "Vedayapalem Main Road", status: "Resolved", aiSummary: "AI Triage: Public safety lighting issue; marked resolved in demo maintenance log." },
+      { id: "NLR-2026-1035", category: "Damaged Roads & Potholes", ward: "Ward 24 - Stonehousepet", title: "Surface potholes causing two-wheeler slowdown", location: "Stonehousepet Market Link", status: "Acknowledged", aiSummary: "AI Triage: Arterial patching required; queued for bitumen cold-mix repair (Demo)." }
+    ];
+
+    let map, markersLayer;
+
+    function initNelloreMap() {
+      map = L.map('nelloreMap').setView([14.4426, 79.9865], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors | Nellore Smart City AI'
+      }).addTo(map);
+
+      markersLayer = L.layerGroup().addTo(map);
+      renderMapMarkers('all');
+    }
+
+    function renderMapMarkers(filterLayer) {
+      markersLayer.clearLayers();
+      const colors = {
+        hospital: '#e11d48',
+        government: '#0284c7',
+        emergency: '#f59e0b',
+        education: '#10b981',
+        transport: '#6366f1',
+        park: '#14b8a6',
+        development: '#8b5cf6'
+      };
+
+      nelloreLocations.forEach(loc => {
+        if (filterLayer !== 'all' && loc.layer !== filterLayer) return;
+
+        const color = colors[loc.layer] || '#0284c7';
+        const markerHtml = `<div style="background:${color}; width:16px; height:16px; border-radius:9999px; border:3px solid white; box-shadow:0 2px 8px rgba(0,0,0,0.4);"></div>`;
+        const icon = L.divIcon({ html: markerHtml, className: '', iconSize: [16, 16], iconAnchor: [8, 8] });
+
+        const marker = L.marker([loc.lat, loc.lng], { icon }).addTo(markersLayer);
+        marker.bindPopup(`<strong>${loc.name}</strong><br><span style="font-size:11px;color:#0284c7;">${loc.cat}</span>`);
+        marker.on('click', () => inspectLocation(loc));
+      });
+    }
+
+    function filterMapLayer(layer) {
+      document.querySelectorAll('.map-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-sky-600', 'text-white');
+        btn.classList.add('glass-card');
+        if (btn.dataset.layer === layer) {
+          btn.classList.add('bg-sky-600', 'text-white');
+          btn.classList.remove('glass-card');
+        }
+      });
+      renderMapMarkers(layer);
+    }
+
+    function inspectLocation(loc) {
+      document.getElementById('locName').textContent = loc.name;
+      document.getElementById('locCategory').textContent = loc.cat;
+      document.getElementById('locAddress').textContent = loc.address;
+      document.getElementById('locServices').textContent = loc.services;
+      document.getElementById('locHours').textContent = loc.hours;
+      document.getElementById('locContact').textContent = loc.contact;
+      document.getElementById('locNavLink').href = `https://www.openstreetmap.org/?mlat=${loc.lat}&mlon=${loc.lng}#map=16/${loc.lat}/${loc.lng}`;
+    }
+
+    function askAIAboutCurrentLocation() {
+      const name = document.getElementById('locName').textContent;
+      document.getElementById('analystInput').value = `Analyze civic accessibility, traffic connectivity, and infrastructure needs around ${name}`;
+      document.getElementById('ai-analyst').scrollIntoView({ behavior: 'smooth' });
+      handleAnalystQuery(new Event('submit'));
+    }
+
+    function initCharts() {
+      const ctx1 = document.getElementById('categoryChart');
+      if (ctx1) {
+        new Chart(ctx1, {
+          type: 'bar',
+          data: {
+            labels: ['Roads', 'Drains', 'Waste', 'Water', 'Lights'],
+            datasets: [{
+              label: 'Demo Reports',
+              data: [42, 35, 29, 21, 15],
+              backgroundColor: ['#0284c7', '#06b6d4', '#10b981', '#6366f1', '#f59e0b'],
+              borderRadius: 8
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+      }
+
+      const ctx2 = document.getElementById('trendChart');
+      if (ctx2) {
+        new Chart(ctx2, {
+          type: 'line',
+          data: {
+            labels: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+            datasets: [
+              { label: 'Reported (Demo)', data: [190, 210, 240, 225, 215, 204], borderColor: '#f59e0b', tension: 0.35 },
+              { label: 'Resolved (Demo)', data: [165, 188, 212, 205, 198, 191], borderColor: '#10b981', tension: 0.35 }
+            ]
+          },
+          options: { responsive: true, maintainAspectRatio: false }
+        });
+      }
+
+      const ctx3 = document.getElementById('infraDoughnutChart');
+      if (ctx3) {
+        new Chart(ctx3, {
+          type: 'doughnut',
+          data: {
+            labels: ['Roads & Mobility', 'Water & Drains', 'Healthcare & Edu', 'Smart Lights & Parks'],
+            datasets: [{
+              data: [34, 28, 22, 16],
+              backgroundColor: ['#0284c7', '#06b6d4', '#10b981', '#6366f1'],
+              borderWidth: 0
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false }
+        });
+      }
+    }
+
+    const domainKnowledge = {
+      civic: {
+        title: "Civic Infrastructure & Complaint Pattern Diagnostic",
+        summary: "Analysis of demo municipal complaint data across Nellore's 54 wards indicates that <strong>Roads/Potholes (29.5%)</strong> and <strong>Stormwater Drainage (24.6%)</strong> account for over half of citizen grievances, concentrated around Magunta Layout, Stonehousepet, and Vedayapalem.",
+        actions: [
+          "Deploy pre-monsoon robotic/mechanical desilting along arterial drains feeding Pennar & Swarnala Cheruvu.",
+          "Establish a 48-hour rapid cold-mix pothole patching SLA for Grand Trunk Road and hospital approach corridors.",
+          "Integrate ward-level LED fault telemetry with Ward Sachivalayam maintenance teams."
+        ]
+      },
+      development: {
+        title: "Nellore Urban Development & Strategic Growth Brief",
+        summary: "Positioned strategically between Chennai and Vijayawada along NH-16 and near Krishnapatnam Port, Nellore has strong potential as a coastal logistics, agro-processing, and education hub.",
+        actions: [
+          "Develop a Pennar Riverfront Ecological & Mobility Corridor linking Nellore Barrage with urban green parks.",
+          "Create dedicated industrial-academic skill corridors connecting Vikrama Simhapuri University with port/logistics employers.",
+          "Implement Transit-Oriented Development (TOD) zones around Nellore Railway Station (NLR) and RTC terminals."
+        ]
+      },
+      healthcare: {
+        title: "Healthcare Accessibility & Public Health Coverage Analysis",
+        summary: "Tertiary care is anchored by <strong>GGH Nellore (Dargamitta)</strong> and <strong>Narayana Medical College</strong>, while 14 Urban PHCs serve primary care. Peripheral northern and western wards experience longer travel times during peak traffic.",
+        actions: [
+          "Upgrade peripheral UPHCs with extended evening OPDs and point-of-care diagnostics to decongest GGH outpatient queues.",
+          "Establish GPS-synchronized green-corridor signal priority for 108 ambulances along Trunk Road and NH-16.",
+          "Run seasonal dengue/vector-control awareness drives in high-density wards."
+        ]
+      },
+      education: {
+        title: "Education & Digital Skill Ecosystem Assessment",
+        summary: "Nellore hosts strong higher-education anchors (VSU, ACSR Medical College, engineering colleges) alongside municipal schools. Bridging digital laboratory access in municipal high schools is a high-impact priority.",
+        actions: [
+          "Equip all municipal high schools with AI/coding computer labs and high-speed fiber connectivity.",
+          "Partner engineering institutions with Nellore Municipal Corporation for student civic-tech internships.",
+          "Expand public digital library hours and competitive exam mentorship centers."
+        ]
+      },
+      transport: {
+        title: "Smart Mobility & Junction Decongestion Analysis",
+        summary: "Traffic bottlenecks cluster at Madras Bus Stand, VRC Center, Pogathota, and railway level crossings due to mixed heavy-transit and local two-wheeler flows.",
+        actions: [
+          "Introduce synchronized adaptive traffic signals along the Grand Trunk Road spine.",
+          "Designate structured auto-rickshaw feeder bays outside Nellore Railway Station and APSRTC terminals.",
+          "Develop safe pedestrian crosswalks and shaded footpaths around schools and hospitals."
+        ]
+      },
+      water: {
+        title: "Water Security & Flood Resilience Assessment",
+        summary: "Nellore relies on the Pennar River basin and irrigation tanks. Seasonal cyclonic rainfall requires proactive canal desilting and smart reservoir telemetry.",
+        actions: [
+          "Install IoT water-level sensors at critical low-lying underpasses and major storm drains (Demo concept).",
+          "Enforce rooftop rainwater harvesting in commercial complexes and public buildings.",
+          "Rejuvenate urban water bodies including Swarnala Cheruvu for groundwater recharge."
+        ]
+      }
+    };
+
+    function runAIAnalysis(key) {
+      const data = domainKnowledge[key] || domainKnowledge.civic;
+      const out = document.getElementById('aiAnalystOutput');
+      out.innerHTML = `
+        <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-sky-500/30 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-sky-500/15 text-sky-600 dark:text-sky-400">AI Diagnostic Output</span>
+            <span class="text-[10px] text-amber-600 font-semibold">Based on Demo Data & Public Geography</span>
+          </div>
+          <h4 class="font-display font-bold text-base text-navy-900 dark:text-white">${data.title}</h4>
+          <p class="text-xs text-slate-700 dark:text-slate-300">${data.summary}</p>
+          <div>
+            <div class="font-bold text-xs text-navy-900 dark:text-sky-300 mb-1">Recommended Urban Actions:</div>
+            <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 dark:text-slate-300">
+              ${data.actions.map(a => `<li>${a}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+
+    function generateStructuredReport() {
+      const reportTitle = document.getElementById('reportTypeSelect').value;
+      const out = document.getElementById('aiAnalystOutput');
+      out.innerHTML = `
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border-2 border-indigo-500/40 shadow-md space-y-3 text-xs">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-200 dark:border-slate-700">
+            <div>
+              <div class="text-[10px] font-bold uppercase text-indigo-600 dark:text-indigo-400">NELLORE SMART CITY AI • POLICY BRIEFING</div>
+              <h4 class="font-display font-bold text-base text-navy-900 dark:text-white">${reportTitle}</h4>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-300 font-bold text-[10px]">PROTOTYPE / DEMO DATA</span>
+          </div>
+          <div><strong>1. Executive Summary:</strong> Strategic assessment for Nellore Municipal Corporation & District Administration focusing on resilient civic infrastructure, rapid citizen grievance resolution, and sustainable urban growth.</div>
+          <div><strong>2. Key Observations & Data Used:</strong> Synthesized from verified Nellore civic geography (54 wards, Pennar basin, NH-16/NLR rail corridor) and simulated demo complaint/telemetry records.</div>
+          <div><strong>3. Major Challenges:</strong> Monsoon stormwater bottlenecks in low-lying wards, peak-hour congestion on Grand Trunk Road, and peripheral primary healthcare load balancing.</div>
+          <div><strong>4. Recommended Actions & Priority:</strong> <span class="text-rose-600 font-bold">[HIGH PRIORITY]</span> Arterial drain desilting, adaptive junction signals, and ward-level digital grievance tracking.</div>
+          <div><strong>5. Estimated Implementation Timeframe:</strong> Phase 1 Quick Wins (0–3 Months) • Phase 2 Infrastructure Upgrades (6–18 Months).</div>
+          <div><strong>6. Progress KPIs:</strong> % reduction in waterlogging hotspots, average civic complaint resolution hours, and citizen satisfaction index.</div>
+        </div>
+      `;
+    }
+
+    function generateLeadershipBrief() {
+      document.getElementById('reportTypeSelect').value = "Nellore Urban Development Report";
+      document.getElementById('ai-analyst').scrollIntoView({ behavior: 'smooth' });
+      generateStructuredReport();
+    }
+
+    function handleAnalystQuery(e) {
+      e.preventDefault();
+      const input = document.getElementById('analystInput');
+      const query = input.value.trim();
+      if (!query) return;
+
+      const out = document.getElementById('aiAnalystOutput');
+      const qLower = query.toLowerCase();
+      let responseText = `Based on Nellore's urban profile and our simulated civic dataset, addressing <strong>"${query}"</strong> requires coordinated action across ward-level engineering, GIS mapping, and citizen feedback loops. Key priorities include pre-monsoon drainage maintenance, Grand Trunk Road traffic optimization, and UPHC healthcare outreach.`;
+
+      if (qLower.includes('water') || qLower.includes('flood') || qLower.includes('rain')) {
+        responseText = `<strong>Water & Flood Resilience Insight:</strong> For "${query}", AI recommends desilting arterial storm drains connected to Pennar River and Swarnala Cheruvu, deploying IoT water-level sensors at low-lying junctions (Demo), and mandating rainwater harvesting in new layouts.`;
+      } else if (qLower.includes('traffic') || qLower.includes('road') || qLower.includes('bus') || qLower.includes('transport')) {
+        responseText = `<strong>Mobility & Road Insight:</strong> Regarding "${query}", traffic telemetry (demo) highlights peak congestion near Madras Bus Stand, VRC Center, and Stonehousepet. Recommended interventions: adaptive signal timing, dedicated APSRTC bus bays, and cold-mix pothole repairs within 48 hours.`;
+      } else if (qLower.includes('hospital') || qLower.includes('health')) {
+        responseText = `<strong>Healthcare Insight:</strong> For "${query}", Nellore is anchored by GGH (Dargamitta) and Narayana Medical College. Expanding evening diagnostics at Nellore's 14 Urban PHCs will improve neighborhood access and reduce tertiary OPD load.`;
+      }
+
+      out.innerHTML += `
+        <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 ml-8 text-xs">
+          <strong>You:</strong> ${query}
+        </div>
+        <div class="p-4 rounded-2xl bg-sky-500/10 border border-sky-500/25 mr-4 text-xs space-y-1.5">
+          <div class="font-bold text-sky-700 dark:text-sky-300">Nellore AI Analyst (Demo Synthesis):</div>
+          <div>${responseText}</div>
+          <div class="text-[10px] text-amber-600">Disclaimer: Uses verified Nellore civic context + simulated demo analytics.</div>
+        </div>
+      `;
+      out.scrollTop = out.scrollHeight;
+      input.value = '';
+    }
+
+    function resetAnalystConsole() {
+      document.getElementById('aiAnalystOutput').innerHTML = `
+        <div class="p-4 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-xs">
+          Console cleared. Select a diagnostic domain, generate a Government Report, or enter a custom question below.
+        </div>`;
+    }
+
+    function renderComplaintsList() {
+      const container = document.getElementById('recentComplaintsList');
+      const adminSel = document.getElementById('adminCompSelect');
+      container.innerHTML = '';
+      if (adminSel) adminSel.innerHTML = '';
+
+      complaintsList.forEach(c => {
+        const badgeColor = c.status === 'Resolved' ? 'bg-emerald-500/15 text-emerald-600' :
+                           c.status === 'In Progress' ? 'bg-amber-500/15 text-amber-600' : 'bg-sky-500/15 text-sky-600';
+        container.innerHTML += `
+          <div class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/70 border border-slate-200/70 dark:border-slate-700">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-mono font-bold text-sky-600 dark:text-sky-400">${c.id}</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${badgeColor}">${c.status}</span>
+            </div>
+            <div class="font-bold text-navy-900 dark:text-white mt-1">${c.title}</div>
+            <div class="text-[11px] text-slate-500">${c.ward} • ${c.location}</div>
+            <div class="text-[11px] text-slate-600 dark:text-slate-300 mt-1 italic">${c.aiSummary}</div>
+          </div>
+        `;
+        if (adminSel) {
+          adminSel.innerHTML += `<option value="${c.id}">${c.id} (${c.status})</option>`;
+        }
+      });
+    }
+
+    function submitCivicComplaint(e) {
+      e.preventDefault();
+      const cat = document.getElementById('compCategory').value;
+      const ward = document.getElementById('compWard').value;
+      const title = document.getElementById('compTitle').value.trim();
+      const location = document.getElementById('compLocation').value.trim();
+      const desc = document.getElementById('compDesc').value.trim();
+
+      const newId = `NLR-2026-${Math.floor(1050 + Math.random() * 8900)}`;
+      const aiSummary = `AI Categorizer: Classified under [${cat}] for ${ward}. Priority: ${desc.length > 40 ? 'High' : 'Standard'} civic maintenance review (Demo).`;
+
+      const newEntry = { id: newId, category: cat, ward, title, location, status: 'Submitted', aiSummary };
+      complaintsList.unshift(newEntry);
+
+      document.getElementById('confId').textContent = newId;
+      document.getElementById('confAISummary').textContent = aiSummary;
+      document.getElementById('complaintConfirmation').classList.remove('hidden');
+
+      const totalEl = document.getElementById('statTotalComp');
+      const pendEl = document.getElementById('statPendingComp');
+      const heroEl = document.getElementById('heroActiveComplaints');
+      totalEl.textContent = (parseInt(totalEl.textContent.replace(/,/g, '')) + 1).toLocaleString();
+      const newPend = parseInt(pendEl.textContent) + 1;
+      pendEl.textContent = newPend;
+      heroEl.textContent = newPend;
+
+      renderComplaintsList();
+      e.target.reset();
+    }
+
+    function trackComplaintById() {
+      const queryId = document.getElementById('trackIdInput').value.trim().toUpperCase();
+      const resEl = document.getElementById('trackResult');
+      const found = complaintsList.find(c => c.id === queryId);
+      if (found) {
+        resEl.innerHTML = `
+          <div class="p-3 rounded-xl bg-sky-500/10 border border-sky-500/25">
+            <div><strong>${found.id}</strong> — Status: <span class="font-bold text-sky-600">${found.status}</span></div>
+            <div class="mt-0.5">${found.title} (${found.ward})</div>
+            <div class="text-[11px] text-slate-500 mt-1">${found.aiSummary}</div>
+          </div>`;
+      } else {
+        resEl.innerHTML = `<div class="text-amber-600">No demo record found for "${queryId}". Try <strong>NLR-2026-1042</strong> or submit a new report.</div>`;
+      }
+    }
+
+    function calculateDemoRoute() {
+      const start = document.getElementById('routeStart').value;
+      const end = document.getElementById('routeEnd').value;
+      const out = document.getElementById('routeOutput');
+      if (start === end) {
+        out.innerHTML = `<div class="text-amber-600 font-semibold">Origin and destination are identical. Please select two different Nellore landmarks.</div>`;
+        return;
+      }
+      out.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-sky-600">Estimated Corridor Summary (Demo)</span>
+          <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-700 font-bold">SIMULATED</span>
+        </div>
+        <div class="font-semibold text-navy-900 dark:text-white mt-1">${start} → ${end}</div>
+        <div class="grid grid-cols-2 gap-2 mt-2">
+          <div class="p-2 rounded-lg bg-white dark:bg-slate-900"><strong>Est. Time:</strong> 14–22 mins (Demo)</div>
+          <div class="p-2 rounded-lg bg-white dark:bg-slate-900"><strong>Transit:</strong> APSRTC City Bus / Auto</div>
+        </div>
+        <div class="text-[11px] text-slate-600 dark:text-slate-300 mt-1">
+          <strong>Traffic AI Tip:</strong> Use Mini-Bypass / Trunk Road connector during 5:30 PM – 8:00 PM peak hours.
+        </div>
+      `;
+    }
+
+    function renderPublicServices(list = publicServicesData) {
+      const grid = document.getElementById('servicesGrid');
+      grid.innerHTML = list.map(s => `
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <h4 class="font-bold text-sm text-navy-900 dark:text-white">${s.title}</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5">${s.desc}</p>
+            <div class="mt-3 p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/70 text-[11px]">
+              <strong>Required Documents:</strong> ${s.docs}
+            </div>
+            <div class="mt-2 text-[11px] text-slate-500"><strong>Process:</strong> ${s.process}</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between text-xs">
+            <span class="text-[10px] text-slate-400">Official AP Portal</span>
+            <a href="${s.link}" target="_blank" rel="noopener noreferrer" class="text-sky-600 font-semibold hover:underline">Visit Official Site ↗</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterPublicServices() {
+      const q = document.getElementById('serviceSearchInput').value.toLowerCase();
+      if (!q) return renderPublicServices(publicServicesData);
+      const filtered = publicServicesData.filter(s =>
+        s.title.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q) || s.docs.toLowerCase().includes(q)
+      );
+      renderPublicServices(filtered.length ? filtered : publicServicesData);
+    }
+
+    function renderProjects(stageFilter = 'all') {
+      const grid = document.getElementById('projectsGrid');
+      const filtered = stageFilter === 'all' ? developmentProjects : developmentProjects.filter(p => p.stage === stageFilter);
+      grid.innerHTML = filtered.map(p => {
+        const stageColor = p.stage === 'Completed' ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300' :
+                           p.stage === 'In Progress' ? 'bg-sky-500/15 text-sky-700 dark:text-sky-300' : 'bg-amber-500/15 text-amber-700 dark:text-amber-300';
+        return `
+          <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded ${stageColor}">${p.stage}</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/15 text-amber-600">DEMO TRACKER</span>
+              </div>
+              <h4 class="font-bold text-base text-navy-900 dark:text-white">${p.name}</h4>
+              <div class="text-xs text-sky-600 dark:text-sky-400 font-medium mt-0.5">${p.category} • ${p.location}</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">${p.desc}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 text-[11px] text-slate-500">
+              <div><strong>Implementing Agency:</strong> ${p.dept}</div>
+              <div class="mt-0.5"><strong>Update:</strong> ${p.update}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterProjects(stage, btnEl) {
+      document.querySelectorAll('.proj-filter').forEach(b => {
+        b.classList.remove('bg-navy-900', 'dark:bg-sky-600', 'text-white');
+        b.classList.add('glass-card');
+      });
+      if (btnEl) {
+        btnEl.classList.add('bg-navy-900', 'dark:bg-sky-600', 'text-white');
+        btnEl.classList.remove('glass-card');
+      }
+      renderProjects(stage);
+    }
+
+    function renderWardComparison() {
+      const idxA = parseInt(document.getElementById('wardSelectA').value);
+      const idxB = parseInt(document.getElementById('wardSelectB').value);
+      const out = document.getElementById('wardComparisonOutput');
+      [wardData[idxA], wardData[idxB]].forEach((w, i) => {
+        if (i === 0) out.innerHTML = '';
+        out.innerHTML += `
+          <div class="p-5 rounded-2xl bg-slate-100/80 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2.5 text-xs">
+            <div class="flex items-center justify-between">
+              <h4 class="font-display font-bold text-base text-navy-900 dark:text-white">${w.name}</h4>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-sky-500/15 text-sky-600 font-bold">DEMO WARD</span>
+            </div>
+            <div class="text-slate-500">${w.area}</div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900"><strong>Complaints (Demo):</strong> ${w.complaints} (${w.resolved} Resolved)</div>
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900"><strong>Streetlights:</strong> ${w.streetlights}</div>
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900"><strong>Roads:</strong> ${w.roads}</div>
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900"><strong>Water:</strong> ${w.water}</div>
+            </div>
+            <div><strong>Key Public Facilities:</strong> ${w.facilities}</div>
+            <div class="text-sky-600 dark:text-sky-400 font-semibold">Active Focus: ${w.project}</div>
+          </div>
+        `;
+      });
+    }
+
+    function toggleChatbot() {
+      document.getElementById('chatbotWindow').classList.toggle('hidden');
+    }
+
+    function sendQuickChat(text) {
+      document.getElementById('chatInput').value = text;
+      handleChatSubmit(new Event('submit'));
+    }
+
+    function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+      const box = document.getElementById('chatMessages');
+      box.innerHTML += `<div class="p-2.5 rounded-2xl rounded-tr-none bg-navy-900 text-white ml-8">${msg}</div>`;
+
+      const lower = msg.toLowerCase();
+      let reply = "I can help you explore Nellore's 54 municipal wards, GGH & Narayana hospitals, APSRTC/Railway transit, public services, or log a demo civic complaint. Try asking about a specific service or landmark!";
+      if (lower.includes('hospital') || lower.includes('railway')) {
+        reply = "Near <strong>Nellore Railway Station (NLR)</strong>, major healthcare centers include <strong>Government General Hospital (GGH)</strong> at Dargamitta (~2.2 km) and <strong>Apollo Specialty Hospital</strong> on Muthukur Road. For medical emergencies, dial <strong>108</strong>.";
+      } else if (lower.includes('pothole') || lower.includes('report') || lower.includes('complaint')) {
+        reply = "You can report potholes, garbage, drainage, or streetlight issues directly in our <strong>Nellore Civic Complaint Portal</strong> section above to receive an instant AI triage summary and demo tracking ID.";
+      } else if (lower.includes('civic') || lower.includes('issue') || lower.includes('problem')) {
+        reply = "Based on our demo civic analytics, key urban priorities in Nellore are pre-monsoon stormwater drainage desilting, Grand Trunk Road junction decongestion, and road resurfacing.";
+      } else if (lower.includes('telugu') || lower.includes('తెలుగు')) {
+        reply = "నమస్కారం! నెల్లూరు స్మార్ట్ సిటీ AI కి స్వాగతం. మీరు పైన ఉన్న 'తెలుగు' బటన్ నొక్కడం ద్వారా భాషను మార్చుకోవచ్చు.";
+      }
+
+      setTimeout(() => {
+        box.innerHTML += `<div class="p-3 rounded-2xl rounded-tl-none bg-sky-500/15 text-slate-800 dark:text-slate-200 mr-6">${reply}<div class="text-[9px] text-amber-600 mt-1">Demo Assistant Response</div></div>`;
+        box.scrollTop = box.scrollHeight;
+      }, 250);
+      input.value = '';
+    }
+
+    function openGlobalSearch() {
+      document.getElementById('searchModal').classList.remove('hidden');
+      setTimeout(() => document.getElementById('globalSearchInput').focus(), 100);
+    }
+    function closeGlobalSearch() {
+      document.getElementById('searchModal').classList.add('hidden');
+    }
+    function runGlobalSearch() {
+      const q = document.getElementById('globalSearchInput').value.toLowerCase().trim();
+      const res = document.getElementById('globalSearchResults');
+      if (!q) {
+        res.innerHTML = `<div class="text-slate-500 p-3 text-center">Start typing to search Nellore locations, services, projects, or wards...</div>`;
+        return;
+      }
+      const matches = [
+        ...nelloreLocations.filter(l => l.name.toLowerCase().includes(q) || l.cat.toLowerCase().includes(q)).map(l => ({ type: 'Map Location', title: l.name, sub: l.address, href: '#command-center' })),
+        ...publicServicesData.filter(s => s.title.toLowerCase().includes(q)).map(s => ({ type: 'Public Service', title: s.title, sub: s.docs, href: '#services' })),
+        ...developmentProjects.filter(p => p.name.toLowerCase().includes(q)).map(p => ({ type: 'Project (Demo)', title: p.name, sub: p.location, href: '#development' })),
+        ...wardData.filter(w => w.name.toLowerCase().includes(q)).map(w => ({ type: 'Municipal Ward', title: w.name, sub: w.area, href: '#wards' }))
+      ];
+      res.innerHTML = matches.length ? matches.map(m => `
+        <a href="${m.href}" onclick="closeGlobalSearch()" class="block p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/80 hover:border-sky-500 border border-transparent">
+          <div class="text-[10px] font-bold text-sky-600 uppercase">${m.type}</div>
+          <div class="font-bold text-navy-900 dark:text-white">${m.title}</div>
+          <div class="text-slate-500">${m.sub}</div>
+        </a>
+      `).join('') : `<div class="p-3 text-center text-slate-500">No matching records found for "${q}".</div>`;
+    }
+
+    function openAuthModal() { document.getElementById('authModal').classList.remove('hidden'); }
+    function closeAuthModal() { document.getElementById('authModal').classList.add('hidden'); }
+    function performDemoLogin() {
+      const name = document.getElementById('loginName').value || 'Citizen User';
+      const role = document.getElementById('loginRole').value;
+      document.getElementById('authLoginView').classList.add('hidden');
+      document.getElementById('authDashboardView').classList.remove('hidden');
+      document.getElementById('loggedUserDisplay').textContent = name;
+      document.getElementById('loggedRoleDisplay').textContent = role;
+      document.getElementById('authBtnLabel').textContent = name.split(' ')[0];
+      if (role.includes('Administrator')) {
+        document.getElementById('adminControlsBox').classList.remove('hidden');
+      } else {
+        document.getElementById('adminControlsBox').classList.add('hidden');
+      }
+    }
+    function performDemoLogout() {
+      document.getElementById('authLoginView').classList.remove('hidden');
+      document.getElementById('authDashboardView').classList.add('hidden');
+      document.getElementById('authBtnLabel').textContent = 'Citizen Login';
+    }
+    function adminUpdateComplaintStatus() {
+      const id = document.getElementById('adminCompSelect').value;
+      const newStatus = document.getElementById('adminStatusSelect').value;
+      const item = complaintsList.find(c => c.id === id);
+      if (item) {
+        item.status = newStatus;
+        renderComplaintsList();
+      }
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+    function toggleNotifications() {
+      document.getElementById('notifDropdown').classList.toggle('hidden');
+    }
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    }
+
+    let currentLang = 'en';
+    const i18nDict = {
+      en: {
+        nav_home: "Home", nav_dashboard: "City Dashboard", nav_ai: "AI City Analyst", nav_transport: "Transport",
+        nav_health: "Healthcare", nav_edu: "Education", nav_services: "Civic Services", nav_dev: "Development",
+        nav_about: "About & Leadership", nav_emergency: "Emergency", search_btn: "Search City...",
+        hero_badge: "A Smarter Nellore. A Better Andhra Pradesh. • Powered by Intelligent Civic Innovation",
+        hero_title: 'THE FUTURE OF <span class="bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">NELLORE</span> STARTS HERE.',
+        hero_subtitle: "One intelligent platform connecting people, infrastructure, public services and city development through AI — engineered for Sri Potti Sriramulu Nellore District & Andhra Pradesh.",
+        cta_explore: "Explore Smart Nellore", cta_dashboard: "Open City Dashboard", cta_report: "Report a Civic Issue", cta_ai: "Ask AI City Analyst",
+        stat_pop: "City Population (UA)", stat_wards: "Municipal Wards", stat_hospitals: "Hospitals & PHCs",
+        stat_schools: "Schools & Colleges", stat_transport: "APSRTC & City Routes", stat_complaints: "Active Civic Reports"
+      },
+      te: {
+        nav_home: "హోమ్", nav_dashboard: "సిటీ డాష్‌బోర్డ్", nav_ai: "AI సిటీ అనలిస్ట్", nav_transport: "రవాణా",
+        nav_health: "ఆరోగ్యం", nav_edu: "విద్య", nav_services: "పౌర సేవలు", nav_dev: "అభివృద్ధి",
+        nav_about: "నాయకత్వం", nav_emergency: "అత్యవసర", search_btn: "నగరంలో వెతకండి...",
+        hero_badge: "స్మార్ట్ నెల్లూరు. మెరుగైన ఆంధ్రప్రదేశ్. • ఇంటెలిజెంట్ సివిక్ ఇన్నోవేషన్",
+        hero_title: '<span class="bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">నెల్లూరు</span> భవిష్యత్తు ఇక్కడే ప్రారంభమవుతుంది.',
+        hero_subtitle: "AI ద్వారా ప్రజలు, మౌలిక సదుపాయాలు, ప్రజా సేవలు మరియు నగర అభివృద్ధిని అనుసంధానించే ఒకే ఒక్క సమగ్ర వేదిక.",
+        cta_explore: "స్మార్ట్ నెల్లూరు చూడండి", cta_dashboard: "సిటీ డాష్‌బోర్డ్ తెరవండి", cta_report: "సమస్యను నివేదించండి", cta_ai: "AI అనలిస్ట్‌ను అడగండి",
+        stat_pop: "నగర జనాభా (2011)", stat_wards: "మున్సిపల్ వార్డులు", stat_hospitals: "ఆసుపత్రులు & PHCలు",
+        stat_schools: "పాఠశాలలు & కళాశాలలు", stat_transport: "బస్సు రూట్లు", stat_complaints: "యాక్టివ్ ఫిర్యాదులు"
+      }
+    };
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'te' : 'en';
+      document.getElementById('langToggle').textContent = currentLang === 'en' ? 'తెలుగు' : 'English';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18nDict[currentLang][key]) {
+          el.innerHTML = i18nDict[currentLang][key];
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      initNelloreMap();
+      initCharts();
+      renderComplaintsList();
+      renderPublicServices();
+      renderProjects();
+      renderWardComparison();
+    });
+  </script>
+</body>
+</html>
